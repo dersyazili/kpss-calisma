@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sidk Testi</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0D1117;
+    --card: #1A2332;
+    --gold: #C9A84C;
+    --gold-dim: rgba(201,168,76,0.12);
+    --cream: #E8E0D0;
+    --cream-dim: rgba(232,224,208,0.5);
+    --green: #4A7C59;
+    --red: #8B3A3A;
+    --border: rgba(201,168,76,0.2);
+  }
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Crimson Pro', Georgia, serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+  header { text-align: center; margin-bottom: 3rem; max-width: 600px; }
+  .arabic-title {
+    font-family: 'Amiri', serif;
+    font-size: 3rem;
+    color: var(--gold);
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.3s forwards;
+  }
+  .main-title {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--cream-dim);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.8s forwards;
+  }
+  .divider {
+    width: 60px; height: 1px;
+    background: var(--gold);
+    margin: 1.5rem auto;
+    opacity: 0;
+    animation: fadeIn 1s ease 1s forwards;
+  }
+  .subtitle {
+    font-size: 1rem;
+    color: var(--cream-dim);
+    font-style: italic;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.2s forwards;
+  }
+  .progress-wrapper { width: 100%; max-width: 600px; margin-bottom: 1.5rem; }
+  .progress-label { text-align: right; font-size: 0.75rem; color: var(--cream-dim); margin-bottom: 0.4rem; }
+  .progress-bar { width: 100%; height: 2px; background: rgba(201,168,76,0.1); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--gold); transition: width 0.5s ease; width: 0%; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: slideUp 0.45s ease forwards;
+  }
+  .madde-baslik {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1.5rem; padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .madde-harf { font-family: 'Amiri', serif; font-size: 1.8rem; color: var(--gold); min-width: 2rem; text-align: center; }
+  .madde-isim { font-size: 0.78rem; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; }
+  .uyari-etiketi {
+    display: inline-block;
+    font-size: 0.68rem;
+    color: rgba(201,168,76,0.6);
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    margin-left: 0.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+  .soru-no { font-size: 0.7rem; color: var(--cream-dim); letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+  .soru-metin { font-size: 1.1rem; line-height: 1.75; color: var(--cream); margin-bottom: 1.5rem; }
+  .cevap-butonlar { display: flex; gap: 0.75rem; }
+  .cevap-btn {
+    flex: 1;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--cream-dim);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    letter-spacing: 0.05em;
+  }
+  .cevap-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+  .cevap-btn.secili-evet { border-color: var(--green); color: #6DB882; background: rgba(74,124,89,0.15); }
+  .cevap-btn.secili-hayir { border-color: var(--red); color: #C06060; background: rgba(139,58,58,0.15); }
+  .cevap-btn.secili-kismen { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+  .ileri-btn {
+    display: none;
+    width: 100%; max-width: 600px;
+    padding: 0.9rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+    transition: all 0.2s ease;
+    margin-bottom: 1rem;
+  }
+  .ileri-btn:hover { background: var(--gold-dim); }
+  #baslat-btn {
+    display: block; width: 100%; max-width: 300px;
+    margin: 1.5rem auto 0;
+    padding: 0.9rem 2rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 2px;
+    letter-spacing: 0.15em;
+    transition: all 0.2s ease;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.5s forwards;
+  }
+  #baslat-btn:hover { background: var(--gold-dim); }
+  /* Sonuc */
+  #sonuc { display: none; max-width: 600px; width: 100%; flex-direction: column; align-items: center; }
+  .sonuc-baslik { text-align: center; margin-bottom: 2rem; width: 100%; }
+  .sonuc-ozet {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1.5rem; margin-bottom: 1rem; width: 100%;
+  }
+  .madde-sonuc {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+  }
+  .madde-sonuc:last-child { border-bottom: none; }
+  .madde-sonuc-isim { font-size: 0.9rem; color: var(--cream-dim); }
+  .madde-sonuc-skor { font-family: 'Amiri', serif; font-size: 1.1rem; }
+  .genel-degerlendirme {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1.5rem; margin-top: 1rem;
+    font-size: 1rem; line-height: 1.8; color: var(--cream); font-style: italic; width: 100%;
+  }
+  /* Chatbot */
+  .chatbot-alani {
+    margin-top: 2rem; background: var(--card);
+    border: 1px solid var(--border); border-radius: 4px; overflow: hidden; width: 100%;
+  }
+  .chatbot-baslik {
+    padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
+    font-size: 0.78rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase;
+  }
+  .mesajlar {
+    padding: 1.5rem; min-height: 200px; max-height: 420px;
+    overflow-y: auto; display: flex; flex-direction: column; gap: 1rem;
+  }
+  .mesaj {
+    max-width: 85%; padding: 0.75rem 1rem; border-radius: 2px;
+    font-size: 0.95rem; line-height: 1.6;
+    opacity: 0; animation: fadeIn 0.4s ease forwards;
+  }
+  .mesaj.ai { align-self: flex-start; background: rgba(201,168,76,0.07); border: 1px solid var(--border); color: var(--cream); }
+  .mesaj.kullanici { align-self: flex-end; background: rgba(74,124,89,0.1); border: 1px solid rgba(74,124,89,0.3); color: var(--cream); }
+  .giris-alani { display: flex; border-top: 1px solid var(--border); }
+  .giris-alani input {
+    flex: 1; background: transparent; border: none;
+    padding: 1rem 1.5rem; color: var(--cream);
+    font-family: 'Crimson Pro', serif; font-size: 0.95rem; outline: none;
+  }
+  .giris-alani input::placeholder { color: var(--cream-dim); }
+  .giris-alani button {
+    padding: 1rem 1.5rem; background: transparent;
+    border: none; border-left: 1px solid var(--border);
+    color: var(--gold); cursor: pointer;
+    font-family: 'Amiri', serif; font-size: 1.1rem; transition: background 0.2s;
+  }
+  .giris-alani button:hover { background: var(--gold-dim); }
+  .yazıyor { display: none; align-self: flex-start; padding: 0.5rem 1rem; color: var(--cream-dim); font-style: italic; font-size: 0.85rem; }
+  .yazıyor.aktif { display: block; }
+  .detay-liste { width: 100%; margin-top: 1rem; }
+  .detay-grup { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1.2rem; margin-bottom: 0.75rem; }
+  .detay-madde-baslik { font-size: 0.75rem; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .detay-satir { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; padding: 0.45rem 0; border-bottom: 1px solid rgba(201,168,76,0.08); }
+  .detay-satir:last-child { border-bottom: none; }
+  .detay-soru { font-size: 0.9rem; color: var(--cream-dim); line-height: 1.5; flex: 1; font-style: italic; }
+  .detay-cevap { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; white-space: nowrap; padding-top: 0.15rem; }
+  .kopyala-btn {
+    width: 100%; padding: 0.75rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--cream-dim);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+  }
+  .kopyala-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+  .kopyala-bilgi { font-size: 0.78rem; color: var(--green); text-align: center; min-height: 1.2rem; margin-top: 0.3rem; }
+  .gizli { display: none !important; }
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<div id="giris-ekrani">
+  <header>
+    <div class="arabic-title">&#1575;&#1604;&#1589;&#1616;&#1583;&#1618;&#1602;</div>
+    <p class="main-title">Sidk Testi</p>
+    <div class="divider"></div>
+    <p class="subtitle">
+      Alti boyutta kendinle yuzles.<br>
+      Dogru cevap yok — sadece donuk bir ayna var.
+    </p>
+  </header>
+  <button id="baslat-btn" onclick="testiBaslat()">Basla</button>
+</div>
+
+<div id="test-ekrani" class="gizli" style="width:100%;display:flex;flex-direction:column;align-items:center;">
+  <div class="progress-wrapper">
+    <div class="progress-label" id="progress-label">Soru 1 / 28</div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+  <div id="soru-alani" style="width:100%;display:flex;flex-direction:column;align-items:center;"></div>
+  <button class="ileri-btn" id="ileri-btn" onclick="sonrakiSoru()">Devam</button>
+</div>
+
+<div id="sonuc"></div>
+
+<script>
+// Her soru: tek yonlu, net, kimi celdirici
+// celdirici: true olan sorular ters mantikla kurulmus
+const sorular = [
+  {
+    madde: "A", harfAr: "\u0623", isim: "Konu\u015fmada D\u00fcr\u00fcstl\u00fck",
+    sorular: [
+      { s: "Son bir haftada s\u00f6yledi\u011fin hi\u00e7bir s\u00f6zde bilerek ger\u00e7e\u011fi sapt\u0131rmad\u0131n.", celdirici: true },
+      { s: "Birini korumak amac\u0131yla s\u00f6yledi\u011fin bir \u015fey ger\u00e7e\u011fin tamam\u0131 de\u011fildi.", celdirici: false },
+      { s: "Susarak kar\u015f\u0131 taraf\u0131n yanl\u0131\u015f anlamas\u0131na izin verdin.", celdirici: false },
+      { s: "Do\u011fru s\u00f6yledin ama zamanlamas\u0131n\u0131, tonunu ya da kelime se\u00e7imini bile\u00e7li ayarlad\u0131n.", celdirici: true },
+      { s: "S\u00f6yledi\u011fin bir \u015feyin do\u011fru olmad\u0131\u011f\u0131n\u0131 fark etti\u011finde i\u00e7inde bir rahats\u0131zl\u0131k do\u011fdu.", celdirici: false }
+    ]
+  },
+  {
+    madde: "B", harfAr: "\u0628", isim: "Niyet ve \u0130radede D\u00fcr\u00fcstl\u00fck",
+    sorular: [
+      { s: "Yapt\u0131\u011f\u0131n bir iyili\u011fi yaparken 'kimse g\u00f6rm\u00fcyor' diye d\u00fc\u015f\u00fcnd\u00fc\u011f\u00fcn an oldu.", celdirici: false },
+      { s: "Bir ibadeti yaparken o an\u0131 birinin bilmesini ya da g\u00f6rmesini istedin.", celdirici: false },
+      { s: "Bir ameli yaparken niyetini hi\u00e7 sorgulamad\u0131n.", celdirici: false },
+      { s: "\u0130yi bir \u015fey yapt\u0131ktan sonra i\u00e7inde 'ke\u015fke biri bilseydi' hissi ge\u00e7ti.", celdirici: true }
+    ]
+  },
+  {
+    madde: "C", harfAr: "\u062C", isim: "Karar D\u00fcr\u00fcstl\u00fc\u011f\u00fc",
+    sorular: [
+      { s: "Yanl\u0131\u015f oldu\u011funu bildi\u011fin bir \u015feyi yapmaya devam ediyorsun.", celdirici: false },
+      { s: "Do\u011fru oldu\u011funu bildi\u011fin bir \u015feye hen\u00fcz ba\u015flamad\u0131n.", celdirici: false },
+      { s: "Hen\u00fcz karar vermedi\u011fin bir konuyu 'd\u00fc\u015f\u00fcn\u00fcyorum' diyerek ge\u00e7i\u015ftirdin.", celdirici: true },
+      { s: "K\u00f6t\u00fc oldu\u011funa karar verdi\u011fin bir \u015feyi f\u0131rsat \u00e7\u0131k\u0131nca yapt\u0131n ya da yapmak istedin.", celdirici: false },
+      { s: "Erteledi\u011fin bir karar\u0131n sebebi d\u0131\u015far\u0131dan de\u011fil, i\u00e7eriden geliyor.", celdirici: true }
+    ]
+  },
+  {
+    madde: "D", harfAr: "\u062F", isim: "Karar\u0131nda Durma D\u00fcr\u00fcstl\u00fc\u011f\u00fc",
+    sorular: [
+      { s: "T\u00f6vbe etti\u011fin bir \u015feye geri d\u00f6nd\u00fcn.", celdirici: false },
+      { s: "Bir karardan d\u00f6nd\u00fc\u011f\u00fcnde i\u00e7inde rahatlama hissettin.", celdirici: false },
+      { s: "Vazge\u00e7ti\u011fin bir karar i\u00e7in kendi kendine bir gerek\u00e7e \u00fcrettin.", celdirici: false },
+      { s: "Ayn\u0131 \u015feye birden fazla kez t\u00f6vbe ettin.", celdirici: false }
+    ]
+  },
+  {
+    madde: "E", harfAr: "\u0647", isim: "Amelde D\u00fcr\u00fcstl\u00fck",
+    sorular: [
+      { s: "Son bir haftada yaln\u0131zken yapt\u0131\u011f\u0131n ile birinin \u00f6n\u00fcnde yapt\u0131\u011f\u0131n aras\u0131nda fark vard\u0131.", celdirici: false },
+      { s: "Terk etti\u011fini s\u00f6yledi\u011fin bir k\u00f6t\u00fcl\u00fck, f\u0131rsat \u00e7\u0131ksa seni \u00e7ekmeye devam eder.", celdirici: false },
+      { s: "Bir iyili\u011fi birine anlatt\u0131\u011f\u0131nda, anlatma ihtiyac\u0131 duydu\u011funu fark ettin.", celdirici: false },
+      { s: "Bir amelinde riya (g\u00f6steri\u015f) oldu\u011funu fark etti\u011finde onu s\u00fcrd\u00fcrm\u00fc\u015ft\u00fcn.", celdirici: false },
+      { s: "\u0130yi bir \u015fey yapt\u0131ktan sonra de\u011ferinin g\u00f6r\u00fclmesini bekledin.", celdirici: false }
+    ]
+  },
+  {
+    madde: "F", harfAr: "\u0648", isim: "Manev\u00ee Hallerde D\u00fcr\u00fcstl\u00fck",
+    sorular: [
+      { s: "Allah korkusu son bir haftada yapmak \u00fczere oldu\u011fun bir \u015feyi durdurdu ya da yapmad\u0131\u011f\u0131n bir \u015feyi yapt\u0131rd\u0131.", celdirici: false },
+      { s: "Tevekkül etti\u011fini sand\u0131\u011f\u0131n bir durumda, sonu\u00e7 istedi\u011fin gibi \u00e7\u0131kmay\u0131nca i\u00e7in s\u0131k\u0131\u015ft\u0131.", celdirici: false },
+      { s: "Sevdiklerini i\u00e7ten s\u0131ralasan, Allah listenin ilk s\u0131ras\u0131na rahat\u00e7a girer.", celdirici: true },
+      { s: "Dua ederken akl\u0131n ba\u015fka yerdeydi, s\u00f6zlerin otomatik geliyordu.", celdirici: false },
+      { s: "Bir nimetin Allah'tan geldi\u011fini s\u00f6yledin ama i\u00e7ten sebebi ba\u015fka bir \u015feye ba\u011flad\u0131n.", celdirici: false }
+    ]
+  }
+];
+
+// Düz liste
+const tumSorular = [];
+sorular.forEach(madde => {
+  madde.sorular.forEach((obj, i) => {
+    tumSorular.push({
+      madde: madde.madde,
+      harfAr: madde.harfAr,
+      isim: madde.isim,
+      soru: obj.s,
+      celdirici: obj.celdirici || false
+    });
+  });
+});
+
+let mevcutIndex = 0;
+let cevaplar = [];
+let mevcutCevap = null;
+
+function testiBaslat() {
+  document.getElementById('giris-ekrani').classList.add('gizli');
+  const t = document.getElementById('test-ekrani');
+  t.classList.remove('gizli');
+  t.style.display = 'flex';
+  soruGoster(0);
+}
+
+function soruGoster(index) {
+  mevcutCevap = null;
+  const ileri = document.getElementById('ileri-btn');
+  ileri.style.display = 'none';
+
+  const obj = tumSorular[index];
+  const toplam = tumSorular.length;
+  const yuzde = (index / toplam) * 100;
+
+  document.getElementById('progress-label').textContent = 'Soru ' + (index+1) + ' / ' + toplam;
+  document.getElementById('progress-fill').style.width = yuzde + '%';
+
+  const alan = document.getElementById('soru-alani');
+  alan.innerHTML = '';
+
+  const kart = document.createElement('div');
+  kart.className = 'card';
+
+  kart.innerHTML =
+    '<div class="madde-baslik">' +
+      '<div class="madde-harf">' + obj.harfAr + '</div>' +
+      '<div>' +
+        '<div class="madde-isim">' + obj.isim +
+          (obj.celdirici ? '<span class="uyari-etiketi">dikkat</span>' : '') +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="soru-no">SORU ' + (index+1) + '</div>' +
+    '<div class="soru-metin">' + obj.soru + '</div>' +
+    '<div class="cevap-butonlar">' +
+      '<button class="cevap-btn" onclick="cevapSec(this,\'evet\')">Evet</button>' +
+      '<button class="cevap-btn" onclick="cevapSec(this,\'kismen\')">Kismen</button>' +
+      '<button class="cevap-btn" onclick="cevapSec(this,\'hayir\')">Hayir</button>' +
+    '</div>';
+
+  alan.appendChild(kart);
+}
+
+function cevapSec(btn, deger) {
+  btn.parentElement.querySelectorAll('.cevap-btn').forEach(b => {
+    b.classList.remove('secili-evet','secili-hayir','secili-kismen');
+  });
+  btn.classList.add('secili-' + deger);
+  mevcutCevap = deger;
+
+  const ileri = document.getElementById('ileri-btn');
+  ileri.style.display = 'block';
+  ileri.textContent = mevcutIndex === tumSorular.length - 1 ? 'Sonuçlari Gör' : 'Devam';
+}
+
+function sonrakiSoru() {
+  if (!mevcutCevap) return;
+  cevaplar.push({ ...tumSorular[mevcutIndex], cevap: mevcutCevap });
+  mevcutIndex++;
+  if (mevcutIndex >= tumSorular.length) { sonucGoster(); return; }
+  soruGoster(mevcutIndex);
+}
+
+// Kopyalanabilir detaylı metin üret
+function detayliMetinOlustur() {
+  let metin = 'SIDK TESTI SONUCLARI\n====================\n\n';
+  let mevcutMadde = '';
+  cevaplar.forEach((c, i) => {
+    if (c.madde !== mevcutMadde) {
+      mevcutMadde = c.madde;
+      metin += '\n[' + c.madde + '] ' + c.isim + '\n';
+    }
+    const cevapEtiketi = c.cevap === 'evet' ? 'EVET' : c.cevap === 'hayir' ? 'HAYIR' : 'KISMEN';
+    metin += (i+1) + '. ' + c.soru + '\n   -> ' + cevapEtiketi + '\n';
+  });
+  return metin;
+}
+
+function sonucGoster() {
+  document.getElementById('test-ekrani').classList.add('gizli');
+
+  // Madde bazli skor
+  const maddeSkorlar = {};
+  sorular.forEach(m => {
+    maddeSkorlar[m.madde] = { isim: m.isim, evet: 0, kismen: 0, hayir: 0, toplam: 0 };
+  });
+  cevaplar.forEach(c => {
+    if (maddeSkorlar[c.madde]) {
+      maddeSkorlar[c.madde][c.cevap]++;
+      maddeSkorlar[c.madde].toplam++;
+    }
+  });
+
+  // Zayif maddeler
+  const zayif = [];
+  Object.entries(maddeSkorlar).forEach(([madde, data]) => {
+    const sorunlu = data.hayir + data.kismen * 0.5;
+    if (sorunlu >= data.toplam * 0.5) zayif.push(data.isim);
+  });
+
+  let degerlendirme = '';
+  if (zayif.length === 0) {
+    degerlendirme = 'Cevapların yüksek bir öz farkındalık gösteriyor. Ama en tehlikeli körlük görmediğini zannetmektir — bu sonucu da bir ayna olarak oku.';
+  } else if (zayif.length <= 2) {
+    degerlendirme = '<strong>' + zayif.join(' ve ') + '</strong> boyutlarında dikkat gerektiren noktalar var. Sıdkın en ince kırıldığı yerler burasıdır.';
+  } else {
+    degerlendirme = 'Birden fazla boyutta çatlak var: <strong>' + zayif.join(', ') + '</strong>. Görmek, başlı başına bir sıdktır.';
+  }
+
+  // Madde özet satırları
+  let maddeHtml = '';
+  Object.entries(maddeSkorlar).forEach(([madde, data]) => {
+    const skor = data.hayir + data.kismen * 0.5;
+    const yuzde = Math.round((skor / data.toplam) * 100);
+    const renk = yuzde < 30 ? '#6DB882' : yuzde < 60 ? '#C9A84C' : '#C06060';
+    maddeHtml +=
+      '<div class="madde-sonuc">' +
+        '<span class="madde-sonuc-isim">' + madde + ' — ' + data.isim + '</span>' +
+        '<span class="madde-sonuc-skor" style="color:' + renk + '">%' + yuzde + ' çatlak</span>' +
+      '</div>';
+  });
+
+  // Her soru + cevap detay listesi
+  let detayHtml = '';
+  let mevcutMadde = '';
+  cevaplar.forEach((c, i) => {
+    if (c.madde !== mevcutMadde) {
+      mevcutMadde = c.madde;
+      if (i > 0) detayHtml += '</div>';
+      detayHtml += '<div class="detay-grup"><div class="detay-madde-baslik">' + c.madde + ' — ' + c.isim + '</div>';
+    }
+    const cevapRenk = c.cevap === 'evet' ? '#6DB882' : c.cevap === 'hayir' ? '#C06060' : '#C9A84C';
+    const cevapYazi = c.cevap === 'evet' ? 'EVET' : c.cevap === 'hayir' ? 'HAYIR' : 'KISMEN';
+    detayHtml +=
+      '<div class="detay-satir">' +
+        '<span class="detay-soru">' + c.soru + '</span>' +
+        '<span class="detay-cevap" style="color:' + cevapRenk + '">' + cevapYazi + '</span>' +
+      '</div>';
+  });
+  detayHtml += '</div>';
+
+  // Chatbot için detaylı sistem promptu hazırla
+  const testOzeti = detayliMetinOlustur();
+
+  const sonucDiv = document.getElementById('sonuc');
+  sonucDiv.style.display = 'flex';
+  sonucDiv.innerHTML =
+    '<div class="sonuc-baslik">' +
+      '<div class="arabic-title" style="opacity:1;animation:none;">&#1606;&#1578;&#1610;&#1580;&#1577;</div>' +
+      '<p class="main-title" style="opacity:1;animation:none;">Test Tamamlandı</p>' +
+      '<div class="divider" style="opacity:1;animation:none;"></div>' +
+    '</div>' +
+    '<div class="sonuc-ozet">' + maddeHtml + '</div>' +
+    '<button class="kopyala-btn" id="kopyala-btn" onclick="sonuclariKopyala()">Tüm Soruları ve Cevapları Kopyala</button>' +
+    '<div class="kopyala-bilgi" id="kopyala-bilgi"></div>' +
+    '<div class="detay-liste">' + detayHtml + '</div>' +
+    '<div class="genel-degerlendirme">' + degerlendirme + '</div>' +
+    '<div class="chatbot-alani">' +
+      '<div class="chatbot-baslik">— Devam Et / Sorgula —</div>' +
+      '<div class="mesajlar" id="mesajlar">' +
+        '<div class="mesaj ai">Test sonuçların elimde. Hangi soru ya da boyut üzerinde konuşmak istiyorsun?</div>' +
+      '</div>' +
+      '<div class="yazıyor" id="yazıyor">yazıyor...</div>' +
+      '<div class="giris-alani">' +
+        '<input type="text" id="mesaj-input" placeholder="Yaz..." onkeydown="if(event.key===\'Enter\')mesajGonder()">' +
+        '<button onclick="mesajGonder()">&#x2192;</button>' +
+      '</div>' +
+    '</div>';
+
+  // Chatbot için test özetini sistem promptuna göm
+  testSonucMetni = testOzeti;
+}
+
+function sonuclariKopyala() {
+  let metin = detayliMetinOlustur();
+  metin += '\nDEGERLENDIRME:\n';
+  metin += document.querySelector('.genel-degerlendirme').innerText;
+
+  const bilgi = document.getElementById('kopyala-bilgi');
+
+  // Yöntem 1: Modern clipboard API
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(metin).then(() => {
+      bilgi.style.color = '#6DB882';
+      bilgi.textContent = 'Kopyalandi.';
+      setTimeout(() => { bilgi.textContent = ''; }, 2500);
+    }).catch(() => fallbackKopyala(metin, bilgi));
+  } else {
+    fallbackKopyala(metin, bilgi);
+  }
+}
+
+function fallbackKopyala(metin, bilgi) {
+  // Yöntem 2: textarea trick — mobil dahil her yerde çalışır
+  const ta = document.createElement('textarea');
+  ta.value = metin;
+  ta.style.position = 'fixed';
+  ta.style.top = '0';
+  ta.style.left = '0';
+  ta.style.opacity = '0';
+  ta.style.fontSize = '16px'; // iOS zoom engellemek için
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+
+  // iOS için ayrı seçim
+  if (navigator.userAgent.match(/ipad|iphone/i)) {
+    const range = document.createRange();
+    range.selectNodeContents(ta);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    ta.setSelectionRange(0, 999999);
+  }
+
+  try {
+    const basari = document.execCommand('copy');
+    document.body.removeChild(ta);
+    if (basari) {
+      bilgi.style.color = '#6DB882';
+      bilgi.textContent = 'Kopyalandi.';
+      setTimeout(() => { bilgi.textContent = ''; }, 2500);
+    } else {
+      gösterMetin(bilgi, metin);
+    }
+  } catch (e) {
+    document.body.removeChild(ta);
+    gösterMetin(bilgi, metin);
+  }
+}
+
+function gösterMetin(bilgi, metin) {
+  // Yöntem 3: Son çare — metni ekranda göster, kullanıcı elle kopyalar
+  bilgi.style.color = '#C9A84C';
+  bilgi.textContent = 'Asagidaki metni basili tut ve kopyala:';
+  const kutu = document.createElement('textarea');
+  kutu.value = metin;
+  kutu.style.cssText = 'width:100%;height:120px;margin-top:0.5rem;background:#0D1117;color:#E8E0D0;border:1px solid rgba(201,168,76,0.3);padding:0.5rem;font-size:0.75rem;font-family:monospace;border-radius:2px;';
+  kutu.readOnly = true;
+  bilgi.parentElement.insertBefore(kutu, bilgi.nextSibling);
+  kutu.focus();
+  kutu.select();
+}
+
+let testSonucMetni = '';
+let sohbetGecmisi = [];
+
+function getSistemPrompt() {
+  return `Sen derin bir Islam alimisin. Kullanici az once bir Sidk Testi tamamladi.
+
+Sidk: konusmada, niyet ve iradede, karar alma, kararinda durma, amelde ve manevi hallerde dürüstlük.
+
+KULLANICININ TEST SONUCLARI:
+${testSonucMetni}
+
+Kurallar:
+- Türkçe, kisa ve öz
+- Yabanci terimleri parantez içinde ac
+- Ayet ve hadislerle destekle, kaynak ver
+- Dolgu kelimesi kullanma
+- Dogrudan, dürüst, derinlikli
+- Kullanicinin verdigine bakarak konuş — hangi sorulara Hayir/Kismen dedigini biliyor ve ona göre yorum yapiyorsun`;
+}
+
+async function mesajGonder() {
+  const input = document.getElementById('mesaj-input');
+  const mesaj = input.value.trim();
+  if (!mesaj) return;
+  input.value = '';
+  mesajEkle(mesaj, 'kullanici');
+  sohbetGecmisi.push({ role: 'user', content: mesaj });
+  const yazıyor = document.getElementById('yazıyor');
+  yazıyor.classList.add('aktif');
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        system: getSistemPrompt(),
+        messages: sohbetGecmisi
+      })
+    });
+    const data = await response.json();
+    const cevap = data.content.map(b => b.text || '').join('');
+    sohbetGecmisi.push({ role: 'assistant', content: cevap });
+    yazıyor.classList.remove('aktif');
+    mesajEkle(cevap, 'ai');
+  } catch (e) {
+    yazıyor.classList.remove('aktif');
+    mesajEkle('Baglanti hatasi. Tekrar dene.', 'ai');
+  }
+}
+
+function mesajEkle(metin, tip) {
+  const mesajlar = document.getElementById('mesajlar');
+  const div = document.createElement('div');
+  div.className = 'mesaj ' + tip;
+  div.innerHTML = metin.replace(/\n/g, '<br>');
+  mesajlar.appendChild(div);
+  mesajlar.scrollTop = mesajlar.scrollHeight;
+}
+</script>
+</body>
+</html>
