@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+<title>Biyoloji 1. Yazılı Hazırlık</title>
+<style>
+:root{
+  --bg:#f3f5fa;--card:#ffffff;--text:#1c2333;--muted:#5f6879;--line:#e2e6ee;--chip:#eef1f7;
+  --accent:#2563eb;--accentS:#e7efff;
+  --u1:#e08a00;--u1s:#fff3da;--u2:#15934a;--u2s:#e2f6e9;--u3:#7c3aed;--u3s:#efe6ff;
+  --ornek:#e8f1ff;--ornekb:#2563eb;--tuzak:#ffecec;--tuzakb:#d62828;
+  --yaz:#e5f6ec;--yazb:#15934a;--ogr:#fff5d1;--ogrb:#c97a00;--akil:#f1e8ff;--akilb:#7c3aed;
+  --leaf:#3c9d4e;--starch:#1f3a8a;--iodine:#c98a2b;--water:#cfe8ff;--foil:#b7bcc6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e131d;--card:#171f2d;--text:#e7ebf3;--muted:#9ba5b9;--line:#283245;--chip:#222c3d;
+    --accent:#6b9bff;--accentS:#1b2a47;
+    --u1:#ffb02e;--u1s:#3a2c0f;--u2:#3ccf78;--u2s:#11301f;--u3:#a98bff;--u3s:#281c45;
+    --ornek:#15233d;--ornekb:#6b9bff;--tuzak:#3a1818;--tuzakb:#ff6b6b;
+    --yaz:#102d1d;--yazb:#3ccf78;--ogr:#3a2f0c;--ogrb:#ffb02e;--akil:#251a3f;--akilb:#a98bff;
+    --leaf:#4fb862;--starch:#4a6fe0;--iodine:#d9a043;--water:#1d3550;--foil:#7d8594;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e131d;--card:#171f2d;--text:#e7ebf3;--muted:#9ba5b9;--line:#283245;--chip:#222c3d;
+  --accent:#6b9bff;--accentS:#1b2a47;
+  --u1:#ffb02e;--u1s:#3a2c0f;--u2:#3ccf78;--u2s:#11301f;--u3:#a98bff;--u3s:#281c45;
+  --ornek:#15233d;--ornekb:#6b9bff;--tuzak:#3a1818;--tuzakb:#ff6b6b;
+  --yaz:#102d1d;--yazb:#3ccf78;--ogr:#3a2f0c;--ogrb:#ffb02e;--akil:#251a3f;--akilb:#a98bff;
+  --leaf:#4fb862;--starch:#4a6fe0;--iodine:#d9a043;--water:#1d3550;--foil:#7d8594;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",Arial,sans-serif;font-size:16px;line-height:1.6}
+html.fs1 body{font-size:17.5px} html.fs2 body{font-size:19px}
+a{color:var(--accent)}
+.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:8px;padding:10px 12px;padding-top:calc(10px + env(safe-area-inset-top));background:var(--card);border-bottom:1px solid var(--line)}
+.topbar h1{flex:1;font-size:1rem;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ibtn{border:0;background:var(--chip);color:var(--text);min-width:40px;height:40px;border-radius:12px;font-size:1rem;cursor:pointer;font-weight:600}
+.ibtn.hide{visibility:hidden}
+main{max-width:720px;margin:0 auto;padding:16px 16px 120px}
+.bottomnav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:30}
+.bottomnav a{flex:1;text-align:center;padding:7px 0 9px;color:var(--muted);text-decoration:none;font-size:.72rem}
+.bottomnav a span{display:block;font-size:1.3rem;line-height:1.4}
+.bottomnav a.on{color:var(--accent);font-weight:700}
+.lessonbar{position:fixed;bottom:0;left:0;right:0;display:none;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);z-index:30}
+body.inlesson .bottomnav{display:none} body.inlesson .lessonbar{display:flex}
+.lessonbar button{flex:1;border:0;border-radius:14px;padding:12px 6px;font-size:.92rem;font-weight:700;cursor:pointer;background:var(--chip);color:var(--text)}
+.lessonbar button.done{background:var(--accent);color:#fff}
+.lessonbar button.isdone{background:var(--u2);color:#fff}
+.lessonbar button:disabled{opacity:.35}
+/* home */
+.hero{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;border-radius:22px;padding:20px;margin-bottom:16px}
+.hero h2{margin:0 0 4px;font-size:1.35rem;line-height:1.3}
+.hero p{margin:0;opacity:.9;font-size:.92rem}
+.pbar{height:10px;background:rgba(255,255,255,.25);border-radius:9px;overflow:hidden;margin:14px 0 6px}
+.pbar i{display:block;height:100%;background:#fff;border-radius:9px;transition:width .3s}
+.hero .cont{display:inline-block;margin-top:12px;background:#fff;color:#2563eb;font-weight:700;padding:10px 16px;border-radius:12px;text-decoration:none;font-size:.92rem}
+.card{background:var(--card);border-radius:18px;padding:16px;margin-bottom:14px;border:1px solid var(--line)}
+.sec-t{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:20px 4px 8px}
+.ucard{display:flex;gap:14px;align-items:center;text-decoration:none;color:inherit}
+.uicon{width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex:none}
+.ucard h3{margin:0;font-size:1.02rem;line-height:1.3}
+.ucard small{color:var(--muted);display:block;font-size:.8rem}
+.mini{height:6px;background:var(--chip);border-radius:6px;overflow:hidden;margin-top:8px}
+.mini i{display:block;height:100%;border-radius:6px}
+.u1 .uicon{background:var(--u1s)} .u1 .mini i{background:var(--u1)}
+.u2 .uicon{background:var(--u2s)} .u2 .mini i{background:var(--u2)}
+.u3 .uicon{background:var(--u3s)} .u3 .mini i{background:var(--u3)}
+.teach{background:var(--ogr);border:1px solid var(--ogrb)}
+.teach h3{margin:0 0 6px;font-size:1rem}
+.teach a{display:block;padding:9px 0;border-top:1px dashed var(--ogrb);text-decoration:none;color:var(--text);font-weight:600;font-size:.94rem}
+.teach a:first-of-type{border-top:0}
+/* unit page */
+.uhead{border-radius:20px;padding:18px;margin-bottom:14px}
+.uhead.u1{background:var(--u1s)} .uhead.u2{background:var(--u2s)} .uhead.u3{background:var(--u3s)}
+.uhead .code{font-size:.78rem;font-weight:700;opacity:.8}
+.uhead h2{margin:4px 0 6px;font-size:1.3rem;line-height:1.3}
+.uhead p{margin:0;font-size:.9rem;color:var(--muted)}
+.litem{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px 14px;margin-bottom:10px;text-decoration:none;color:inherit}
+.litem .num{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;background:var(--chip);flex:none}
+.litem.ok .num{background:var(--u2);color:#fff}
+.litem b{flex:1;font-size:.95rem;font-weight:600;line-height:1.35}
+.star{font-size:.68rem;font-weight:700;background:var(--ogr);color:var(--ogrb);border:1px solid var(--ogrb);padding:2px 7px;border-radius:20px;white-space:nowrap}
+/* lesson */
+.lhead .chip{display:inline-block;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:6px}
+.lhead.u1 .chip{background:var(--u1s);color:var(--u1)} .lhead.u2 .chip{background:var(--u2s);color:var(--u2)} .lhead.u3 .chip{background:var(--u3s);color:var(--u3)}
+.lhead h2{margin:0 0 12px;font-size:1.4rem;line-height:1.3}
+.lesson h3{font-size:1.1rem;margin:24px 0 8px;padding-left:10px;border-left:4px solid var(--accent);line-height:1.35}
+.lesson.u1 h3{border-color:var(--u1)} .lesson.u2 h3{border-color:var(--u2)} .lesson.u3 h3{border-color:var(--u3)}
+.lesson p{margin:8px 0}
+.lesson ul,.lesson ol{padding-left:22px;margin:8px 0}
+.lesson li{margin:5px 0}
+.lead{font-size:1.04em;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.box{border-radius:16px;padding:12px 14px;margin:14px 0;border-left:5px solid}
+.box>b:first-child{display:block;margin-bottom:4px;font-size:.92rem}
+.box p{margin:4px 0}.box ul,.box ol{margin:4px 0}
+.ornek{background:var(--ornek);border-color:var(--ornekb)} .ornek>b:first-child{color:var(--ornekb)}
+.tuzak{background:var(--tuzak);border-color:var(--tuzakb)} .tuzak>b:first-child{color:var(--tuzakb)}
+.yaz{background:var(--yaz);border-color:var(--yazb)} .yaz>b:first-child{color:var(--yazb)}
+.ogr{background:var(--ogr);border-color:var(--ogrb)} .ogr>b:first-child{color:var(--ogrb)}
+.akil{background:var(--akil);border-color:var(--akilb)} .akil>b:first-child{color:var(--akilb)}
+.yaz .q{font-weight:600;font-style:italic;display:block;margin-bottom:4px}
+.formula{background:var(--card);border:1px dashed var(--muted);border-radius:12px;padding:10px 12px;margin:10px 0;text-align:center;font-weight:700;font-size:1.02em;overflow-x:auto;white-space:nowrap}
+.formula small{display:block;font-weight:500;color:var(--muted);white-space:normal;font-size:.8em}
+.tw{overflow-x:auto;margin:12px 0;border-radius:14px;border:1px solid var(--line);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.88em;min-width:100%}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--chip);font-weight:700}
+tr:last-child td{border-bottom:0}
+.wide table{min-width:560px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+@media (max-width:420px){.grid2{grid-template-columns:1fr}}
+.gcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px}
+.gcard h4{margin:0 0 6px;font-size:1rem}
+.gcard ul{padding-left:18px;margin:4px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chips span{background:var(--card);border:1px solid var(--line);border-radius:30px;padding:6px 12px;font-size:.88em}
+.flow{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:12px 0}
+.flow .st{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;text-align:center;font-weight:600}
+.flow .st small{display:block;font-weight:400;color:var(--muted);font-size:.82em}
+.flow .ar{text-align:center;color:var(--muted);font-size:.85em;padding:4px 0}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0}
+.chain span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:.88em;font-weight:600}
+.chain span.hl{background:var(--u3s);border-color:var(--u3);color:var(--text)}
+.chain span.hl2{background:var(--u1s);border-color:var(--u1)}
+.chain em{font-style:normal;color:var(--muted)}
+.steps{counter-reset:s;margin:12px 0;padding:0;list-style:none}
+.steps li{position:relative;padding:10px 12px 10px 52px;background:var(--card);border:1px solid var(--line);border-radius:14px;margin:8px 0}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:12px;top:10px;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+.lesson.u3 .steps li::before{background:var(--u3)} .lesson.u2 .steps li::before{background:var(--u2)} .lesson.u1 .steps li::before{background:var(--u1)}
+.svgw{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px;margin:12px 0;text-align:center}
+.svgw svg{width:100%;height:auto;max-width:520px}
+.svgw figcaption{font-size:.8em;color:var(--muted);margin-top:4px}
+svg text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;fill:var(--text)}
+.t-m{fill:var(--muted)}
+.mini3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.mini3 div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px;text-align:center;font-size:.75em;font-weight:600}
+.mini3 svg{width:100%;height:auto}
+.exp{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin:14px 0}
+.exp h4{margin:0 0 6px;font-size:1.02rem}
+.exp .row{margin:4px 0}
+.exp .lbl{font-weight:700;color:var(--u2)}
+.tl{border-left:3px solid var(--u2);margin:12px 0 12px 8px;padding-left:16px}
+.tl .ev{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin:12px 0}
+.tl .ev::before{content:"";position:absolute;left:-25px;top:16px;width:14px;height:14px;border-radius:50%;background:var(--u2);border:3px solid var(--bg)}
+.tl .yr{font-size:.78em;font-weight:700;color:var(--u2)}
+.tl h4{margin:2px 0 6px;font-size:1.02rem}
+.qr{list-style:none;padding:0;margin:10px 0}
+.qr li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:7px 0}
+.search{width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:1rem;margin-bottom:12px}
+.term{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 13px;margin-bottom:8px}
+.term b{display:block}
+.term span{color:var(--muted);font-size:.92em}
+.donebadge{display:inline-block;margin-left:6px;font-size:.75rem;color:var(--u2);font-weight:700}
+.foot{text-align:center;color:var(--muted);font-size:.78rem;margin-top:24px}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <button class="ibtn hide" id="backBtn" aria-label="Geri">←</button>
+  <h1 id="ttl">Biyoloji 1. Yazılı</h1>
+  <button class="ibtn" id="fsBtn" aria-label="Yazı boyutu">Aa</button>
+  <button class="ibtn" id="thBtn" aria-label="Tema">🌙</button>
+</header>
+<main id="app"></main>
+<nav class="bottomnav" id="bnav">
+  <a href="#home" data-k="home"><span>🏠</span>Ana Sayfa</a>
+  <a href="#sinav" data-k="sinav"><span>📝</span>Sınav Bilgisi</a>
+  <a href="#sozluk" data-k="sozluk"><span>📖</span>Sözlük</a>
+</nav>
+<div class="lessonbar">
+  <button id="prevBtn">← Önceki</button>
+  <button id="doneBtn" class="done">Okudum ✓</button>
+  <button id="nextBtn">Sonraki →</button>
+</div>
+
+<template id="tpl">
+<!-- ===================== ÜNİTE 1 ===================== -->
+<section data-id="1-1" data-unit="1" data-title="Enerji nedir, neden gereklidir?">
+<p class="lead">Canlılar yaşamlarını sürdürebilmek için <b>sürekli enerjiye</b> ihtiyaç duyar. Enerji sağlanamazsa hücredeki olaylar durur ve hücre ölür.</p>
+<h3>Enerji nedir?</h3>
+<p><b>Enerji</b>, iş yapabilme yeteneği ya da bir değişikliğe neden olma kapasitesidir.</p>
+<ul>
+<li>Doğada farklı biçimlerde bulunur: <b>ışık, ısı, elektrik, ses, hareket, potansiyel, kimyasal ve nükleer</b> enerji.</li>
+<li>Enerji <b>yoktan var edilemez, yok edilemez</b>. Sadece bir biçimden başka bir biçime <b>dönüşür</b> ya da bir yerden başka yere aktarılır.</li>
+<li>Canlılar da enerjiyi dönüştürür. Bitki ışık enerjisini kimyasal enerjiye, kas hücresi kimyasal enerjiyi hareket enerjisine dönüştürür.</li>
+</ul>
+<h3>Hangi olaylar enerji ister?</h3>
+<div class="chips">
+<span>🌱 Büyüme ve gelişme</span><span>🧬 Hücre bölünmesi</span><span>🚪 Aktif taşıma</span><span>💪 Kas kasılması, hareket</span><span>🌡️ Vücut sıcaklığını koruma</span><span>⚡ Sinirsel iletim</span><span>🏗️ Biyosentez (protein, yağ, karbonhidrat yapımı)</span><span>🩹 Onarım (yara iyileşmesi)</span><span>🐣 Üreme</span>
+</div>
+<div class="box ornek"><b>💡 Örnek</b>Koşan bir öğrencide bacak kaslarının kasılması, kalbin atması, sinirlerin beyne mesaj taşıması, terleyerek vücut ısısının dengelenmesi enerji harcar. Uyurken bile kalp atışı, solunum ve vücut sıcaklığının korunması için enerji harcanır.</div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b>"Uyuyan ya da dinlenen canlı enerji harcamaz" ifadesi <b>yanlıştır</b>. Canlı yaşadığı sürece enerji harcar, sadece harcadığı miktar azalır.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Canlılar için enerji neden gereklidir?</span>Canlılar büyüme, hücre bölünmesi, aktif taşıma, kas kasılması, sinirsel iletim ve vücut sıcaklığını koruma gibi yaşamsal faaliyetleri enerji kullanarak gerçekleştirir. Enerji sağlanamazsa bu faaliyetler durur ve canlı yaşamını sürdüremez.</div>
+</section>
+
+<section data-id="1-2" data-unit="1" data-title="Enerji kaynakları ve enerji akışı">
+<h3>Ototrof ve heterotrof canlılar</h3>
+<div class="grid2">
+<div class="gcard"><h4>🌿 Ototrof (üretici)</h4><ul><li>İnorganik maddelerden (CO₂, H₂O) <b>kendi besinini üretir</b>.</li><li>Enerji kaynağı: güneş ışığı (fotosentez) ya da inorganik maddelerin kimyasal enerjisi (kemosentez).</li><li>Örnek: bitkiler, algler, siyanobakteriler</li></ul></div>
+<div class="gcard"><h4>🐇 Heterotrof (tüketici)</h4><ul><li>Besinini üretemez, <b>hazır organik besin</b> alır.</li><li>Enerjiyi besinlerin kimyasal bağlarından elde eder.</li><li>Örnek: hayvanlar, mantarlar, insan</li></ul></div>
+</div>
+<h3>Canlılarda enerji akışı</h3>
+<div class="flow">
+<div class="st">☀️ Güneş<small>ışık enerjisi</small></div>
+<div class="ar">↓ fotosentez (bitki)</div>
+<div class="st">🍞 Besin (glikoz, nişasta, yağ)<small>kimyasal bağ enerjisi</small></div>
+<div class="ar">↓ hücresel solunum (besinin hücrede parçalanması)</div>
+<div class="st">⚡ ATP<small>hücrenin doğrudan kullandığı enerji molekülü</small></div>
+<div class="ar">↓</div>
+<div class="st">🏃 Yaşamsal faaliyetler<small>kasılma, aktif taşıma, sinirsel iletim, biyosentez</small></div>
+</div>
+<ul>
+<li>Yeryüzündeki temel enerji kaynağı <b>Güneş</b>'tir.</li>
+<li>Tüketiciler bu kimyasal enerjiyi besin zinciriyle, yani başka canlıları yiyerek alır.</li>
+<li>Her basamakta enerjinin bir kısmı <b>ısı</b> olarak ortama verilir.</li>
+</ul>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b>Canlılar besinlerdeki enerjiyi yaşamsal faaliyetlerde <b>doğrudan kullanamaz</b>. Besin önce hücrede parçalanır, açığa çıkan enerji <b>ATP</b>'ye aktarılır. Koşan bir öğrencinin kasları fıstıktaki ya da şekerdeki enerjiyi değil, <b>ATP</b>'yi doğrudan kullanır.</div>
+<div class="box ornek"><b>💡 Örnek: Besin yakma deneyi</b>Eşit kütlede farklı besinler yakılarak eşit miktarda su ısıtılır. Suyu en çok ısıtan besin, gramında en fazla enerjiyi içerir. Yağ bakımından zengin besinler (fıstık gibi) genellikle suyu en çok ısıtır.<br><br>Fark: Besin yakılınca enerji <b>bir anda ısı ve ışık</b> olarak açığa çıkar. Hücrede ise besin enzimlerle <b>basamak basamak</b> parçalanır ve enerjinin bir kısmı <b>ATP</b>'ye aktarılır.</div>
+<div class="box ornek"><b>💡 Örnek: Kapalı şişe bahçesi</b>İçine bitki ve toprak konup ağzı kapatılan bir şişe, pencere önünde yıllarca yaşayabilir.<ul><li>Şişeye dışarıdan <b>ışık enerjisi</b> girer.</li><li>Şişeden dışarı <b>ısı enerjisi</b> çıkar.</li><li>CO₂, O₂ ve su şişenin içinde döner durur. Bitki fotosentezde CO₂ kullanıp O₂ verir, solunumda O₂ kullanıp CO₂ verir.</li><li>Şişe aylarca karanlıkta kalırsa fotosentez durur, yeni besin üretilemez. Depo besinler bitince bitki ölür.</li></ul></div>
+<div class="box akil"><b>🧠 Akılda kalsın</b>Enerji akışı <b>tek yönlüdür</b>: Güneş'ten gelir, ısı olarak gider. Madde ise <b>döngüseldir</b>: karbon, oksijen ve su tekrar tekrar kullanılır.</div>
+</section>
+
+<section data-id="1-3" data-unit="1" data-star="1" data-title="ATP'nin yapısı">
+<div class="box ogr"><b>⭐ Öğretmenin vurguladığı</b>Öğretmeninizin sınıfta sorduğu 2 sorudan biri <b>ATP</b> ile ilgili. Bu bölüm en önemli bölümlerden biridir.</div>
+<p><b>ATP (adenozin trifosfat):</b> Bütün canlı hücrelerde enerji aktarımında kullanılan <b>ortak (evrensel)</b> moleküldür. <b>Nükleotit</b> yapılıdır.</p>
+<p>ATP, RNA'daki adenin nükleotidine benzer. Farkı, 1 yerine <b>3 fosfat</b> taşımasıdır.</p>
+<h3>ATP'nin 3 yapı birimi</h3>
+<ol>
+<li><b>Adenin:</b> azotlu organik baz</li>
+<li><b>Riboz:</b> 5 karbonlu şeker</li>
+<li><b>3 fosfat grubu:</b> P–P–P</li>
+</ol>
+<figure class="svgw">
+<svg viewBox="0 0 300 200" role="img" aria-label="ATP yapısı şeması">
+  <text x="140" y="16" font-size="10" text-anchor="middle">Ester bağı</text>
+  <line x1="128" y1="20" x2="128" y2="44" stroke="currentColor" stroke-width="1" style="color:var(--muted)"/>
+  <text x="207" y="16" font-size="10" text-anchor="middle" fill="#d62828" style="fill:#d62828">Fosfat bağları</text>
+  <line x1="190" y1="20" x2="170" y2="44" stroke="#d62828"/><line x1="222" y1="20" x2="208" y2="44" stroke="#d62828"/>
+  <rect x="6" y="34" width="62" height="32" rx="8" fill="#3b82f6"/>
+  <text x="37" y="54" font-size="11" text-anchor="middle" style="fill:#fff" font-weight="700">Adenin</text>
+  <line x1="68" y1="50" x2="81" y2="50" stroke="#888" stroke-width="3"/>
+  <polygon points="100,30 119,44 112,66 88,66 81,44" fill="#ec4899"/>
+  <text x="100" y="54" font-size="10" text-anchor="middle" style="fill:#fff" font-weight="700">Riboz</text>
+  <line x1="119" y1="50" x2="135" y2="50" stroke="#888" stroke-width="3"/>
+  <line x1="165" y1="50" x2="173" y2="50" stroke="#d62828" stroke-width="4"/>
+  <line x1="203" y1="50" x2="211" y2="50" stroke="#d62828" stroke-width="4"/>
+  <circle cx="150" cy="50" r="15" fill="#22a35a"/><text x="150" y="54" font-size="12" text-anchor="middle" style="fill:#fff" font-weight="700">P</text>
+  <circle cx="188" cy="50" r="15" fill="#22a35a"/><text x="188" y="54" font-size="12" text-anchor="middle" style="fill:#fff" font-weight="700">P</text>
+  <circle cx="226" cy="50" r="15" fill="#22a35a"/><text x="226" y="54" font-size="12" text-anchor="middle" style="fill:#fff" font-weight="700">P</text>
+  <line x1="74" y1="56" x2="74" y2="80" stroke="#888"/>
+  <text x="74" y="91" font-size="10" text-anchor="middle">Glikozit bağı</text>
+  <g stroke="currentColor" fill="none" style="color:var(--muted)">
+   <path d="M6 103 V110 H120 V103"/><path d="M6 125 V132 H165 V125"/><path d="M6 147 V154 H203 V147"/><path d="M6 169 V176 H241 V169"/>
+  </g>
+  <text x="126" y="114" font-size="10">Adenozin</text>
+  <text x="171" y="136" font-size="10">AMP</text>
+  <text x="209" y="158" font-size="10">ADP</text>
+  <text x="247" y="180" font-size="11" font-weight="700">ATP</text>
+</svg>
+<figcaption>Adenin + riboz = adenozin. Kırmızı bağlar yüksek enerjili fosfat bağlarıdır.</figcaption>
+</figure>
+<h3>3 bağ çeşidi</h3>
+<div class="tw"><table>
+<tr><th>Bağ</th><th>Nerede?</th><th>ATP'de sayısı</th></tr>
+<tr><td><b>Glikozit bağı</b></td><td>Adenin ile riboz arasında</td><td>1</td></tr>
+<tr><td><b>Ester bağı</b></td><td>Riboz ile ilk fosfat arasında</td><td>1</td></tr>
+<tr><td><b>Fosfat bağı</b> (yüksek enerjili)</td><td>Fosfatlar arasında</td><td>2</td></tr>
+</table></div>
+<h3>Adenozin → AMP → ADP → ATP</h3>
+<div class="formula">Adenin + Riboz = Adenozin</div>
+<div class="formula">Adenozin + 1 P = AMP <small>adenozin monofosfat</small></div>
+<div class="formula">Adenozin + 2 P = ADP <small>adenozin difosfat</small></div>
+<div class="formula">Adenozin + 3 P = ATP <small>adenozin trifosfat</small></div>
+<div class="tw"><table>
+<tr><th>Molekül</th><th>Fosfat</th><th>Fosfat bağı</th><th>Ester</th><th>Glikozit</th></tr>
+<tr><td><b>ATP</b></td><td>3</td><td>2</td><td>1</td><td>1</td></tr>
+<tr><td><b>ADP</b></td><td>2</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td><b>AMP</b></td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>Adenozin</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+</table></div>
+<div class="box akil"><b>🧠 Akılda kalsın</b>Mono = 1, di = 2, tri = 3.<br>ATP'de <b>3 fosfat</b> var ama <b>2 fosfat bağı</b> var, çünkü bağ fosfatların <i>arasında</i> kurulur.</div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b><ul><li>Enerji en çok <b>fosfatlar arasındaki bağlarda</b> bulunur. Hücre genellikle <b>en uçtaki</b> fosfat bağını koparır, ATP → ADP olur.</li><li>Glikozit bağı ve ester bağı "yüksek enerjili bağ" <b>değildir</b>.</li><li>ATP'deki şeker <b>ribozdur</b> (5 karbonlu), glikoz değildir.</li></ul></div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: ATP'yi oluşturan yapı birimlerini ve bunları bağlayan bağları yazınız.</span>ATP; adenin bazı, riboz şekeri ve üç fosfat grubundan oluşur. Adenin ile riboz arasında glikozit bağı, riboz ile ilk fosfat arasında ester bağı, fosfat grupları arasında ise iki adet yüksek enerjili fosfat bağı bulunur.</div>
+</section>
+
+<section data-id="1-4" data-unit="1" data-star="1" data-title="Fosforilasyon ve defosforilasyon">
+<div class="box ogr"><b>⭐ Öğretmenin vurguladığı</b>ATP sorusunda en çok bu iki olay sorulur. Denklemleri ezbere yazabilmelisin.</div>
+<div class="grid2">
+<div class="gcard"><h4>🔻 Defosforilasyon (ATP yıkımı)</h4><p>ATP'den bir fosfat <b>ayrılır</b>.</p><ul><li>Su <b>kullanılır</b> → hidroliz (su ile parçalanma)</li><li>Enerji <b>açığa çıkar</b> → ekzergonik</li></ul></div>
+<div class="gcard"><h4>🔺 Fosforilasyon (ATP sentezi)</h4><p>ADP'ye bir fosfat <b>eklenir</b>.</p><ul><li>Su <b>açığa çıkar</b> → dehidrasyon sentezi (su çıkışıyla birleştirme)</li><li>Enerji <b>harcanır</b> → endergonik</li></ul></div>
+</div>
+<div class="formula">ATP + H₂O → ADP + Pᵢ + Enerji<small>Defosforilasyon: açığa çıkan enerji kas kasılması, aktif taşıma, sinirsel iletim ve biyosentezde kullanılır.</small></div>
+<div class="formula">ADP + Pᵢ + Enerji → ATP + H₂O<small>Fosforilasyon: gereken enerji hücresel solunumla besinlerin parçalanmasından sağlanır.</small></div>
+<p><b>Pᵢ</b> = inorganik fosfat</p>
+<h3>Karşılaştırma tablosu</h3>
+<div class="tw"><table>
+<tr><th>Özellik</th><th>Fosforilasyon</th><th>Defosforilasyon</th></tr>
+<tr><td>Ne olur?</td><td>ADP'ye fosfat eklenir</td><td>ATP'den fosfat ayrılır</td></tr>
+<tr><td>Ürün</td><td>ATP + H₂O</td><td>ADP + Pᵢ</td></tr>
+<tr><td>Su</td><td>Açığa çıkar</td><td>Harcanır (hidroliz)</td></tr>
+<tr><td>Enerji</td><td>Harcanır, ATP'ye yüklenir</td><td>Açığa çıkar</td></tr>
+<tr><td>Tepkime türü</td><td><b>Endergonik</b></td><td><b>Ekzergonik</b></td></tr>
+<tr><td>Yapım / yıkım</td><td>Yapım</td><td>Yıkım</td></tr>
+</table></div>
+<div class="box akil"><b>🧠 Akılda kalsın</b><ul><li><b>De</b>fosforilasyon: fosfat <b>ayrılır</b>, enerji dışarı çıkar.</li><li><b>Ekz</b>ergonik: ekz = dış, enerji dışarı verilir.</li><li><b>End</b>ergonik: end = iç, enerji içeri alınır.</li></ul></div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b><ul><li>"Fosforilasyonda enerji açığa çıkar" → <b>Yanlış</b>. Fosforilasyon enerji ister, enerji ATP'de depolanır.</li><li>"ATP yıkımında su açığa çıkar" → <b>Yanlış</b>. ATP yıkımında su <b>harcanır</b>.</li></ul></div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Fosforilasyon ve defosforilasyonu tanımlayıp hangisinin ekzergonik, hangisinin endergonik olduğunu belirtiniz.</span><b>Fosforilasyon</b>, ADP'ye enerji kullanılarak bir inorganik fosfat eklenmesi ve ATP sentezlenmesidir (ADP + Pᵢ + Enerji → ATP + H₂O). Enerji gerektirdiği için <b>endergoniktir</b>.<br><b>Defosforilasyon</b>, ATP'nin su kullanılarak ADP ve inorganik fosfata parçalanmasıdır (ATP + H₂O → ADP + Pᵢ + Enerji). Enerji açığa çıktığı için <b>ekzergoniktir</b>.</div>
+</section>
+
+<section data-id="1-5" data-unit="1" data-star="1" data-title="ATP döngüsü, ekzergonik ve endergonik tepkimeler">
+<figure class="svgw">
+<svg viewBox="0 0 340 235" role="img" aria-label="ATP ADP döngüsü">
+  <rect x="130" y="8" width="80" height="32" rx="10" fill="#e08a00"/><text x="170" y="29" font-size="14" text-anchor="middle" font-weight="700" style="fill:#fff">ATP</text>
+  <rect x="130" y="195" width="80" height="32" rx="10" fill="#3b82f6"/><text x="170" y="216" font-size="14" text-anchor="middle" font-weight="700" style="fill:#fff">ADP + Pᵢ</text>
+  <path d="M212 34 C258 60 258 172 214 200" fill="none" stroke="#d62828" stroke-width="3"/>
+  <polygon points="214,200 224,188 228,200" fill="#d62828"/>
+  <path d="M126 200 C82 172 82 60 126 34" fill="none" stroke="#15934a" stroke-width="3"/>
+  <polygon points="126,34 112,40 120,48" fill="#15934a"/>
+  <text x="250" y="92" font-size="11" font-weight="700" style="fill:#d62828">Defosforilasyon</text>
+  <text x="250" y="107" font-size="10">Enerji açığa çıkar</text>
+  <text x="250" y="121" font-size="10">H₂O harcanır</text>
+  <text x="250" y="140" font-size="9.5" class="t-m">→ kasılma, aktif</text>
+  <text x="250" y="152" font-size="9.5" class="t-m">taşıma, iletim</text>
+  <text x="90" y="92" font-size="11" font-weight="700" text-anchor="end" style="fill:#15934a">Fosforilasyon</text>
+  <text x="90" y="107" font-size="10" text-anchor="end">Enerji harcanır</text>
+  <text x="90" y="121" font-size="10" text-anchor="end">H₂O açığa çıkar</text>
+  <text x="90" y="140" font-size="9.5" text-anchor="end" class="t-m">← enerji: hücresel</text>
+  <text x="90" y="152" font-size="9.5" text-anchor="end" class="t-m">solunumdan</text>
+  <text x="170" y="112" font-size="12" text-anchor="middle" font-weight="700">ATP–ADP</text>
+  <text x="170" y="127" font-size="12" text-anchor="middle" font-weight="700">döngüsü</text>
+</svg>
+<figcaption>ATP sürekli yıkılır ve yeniden yapılır.</figcaption>
+</figure>
+<p>ATP hücrede sürekli yıkılır ve yeniden yapılır. Bu sürekli dönüşüme <b>ATP–ADP döngüsü</b> denir. Bu yüzden ATP <b>yenilenebilir bir enerji taşıyıcısıdır</b>.</p>
+<h3>Ekzergonik ve endergonik tepkimeler</h3>
+<div class="tw"><table>
+<tr><th></th><th>Ekzergonik</th><th>Endergonik</th></tr>
+<tr><td>Anlamı</td><td>Enerji <b>açığa çıkaran</b></td><td>Enerji <b>gerektiren</b></td></tr>
+<tr><td>Genelde</td><td>Yıkım tepkimeleri</td><td>Yapım tepkimeleri</td></tr>
+<tr><td>Örnek</td><td>Hücresel solunum (glikozun parçalanması), ATP → ADP, sindirim</td><td>Protein sentezi, ATP sentezi (ADP → ATP), fotosentez (glikoz yapımı)</td></tr>
+</table></div>
+<p>Hücrede bu iki tür tepkime <b>birlikte</b> gerçekleşir.</p>
+<h3>ATP'nin köprü görevi</h3>
+<div class="flow">
+<div class="st">🔥 Ekzergonik tepkime<small>Örnek: hücresel solunum, glikozun parçalanması</small></div>
+<div class="ar">↓ açığa çıkan enerji ile ADP + Pᵢ → ATP (fosforilasyon)</div>
+<div class="st">⚡ ATP<small>enerjiyi taşır</small></div>
+<div class="ar">↓ ATP → ADP + Pᵢ (defosforilasyon), enerji açığa çıkar</div>
+<div class="st">🏗️ Endergonik olay<small>Örnek: protein sentezi, kas kasılması, aktif taşıma</small></div>
+</div>
+<div class="box ornek"><b>💡 Örnek: Para benzetmesi</b>Besindeki enerji bankadaki para, ATP cebindeki bozuk para gibidir. Alışveriş (hücresel işler) bozuk parayla yapılır. Bozuk para bitince bankadan yeniden çekilir, yani yeni ATP üretilir.</div>
+<div class="box ornek"><b>💡 Örnek</b>Bir hücrede protein sentezi ve aktif taşıma devam ederken ATP miktarı sabit kalıyor. Bu, ATP'nin tüketilmediğini <b>göstermez</b>. Tüketilen ATP kadar yeni ATP aynı hızda üretiliyordur: <b>üretim hızı = tüketim hızı</b>.</div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b>ATP sentezi durursa hücredeki mevcut ATP ancak kısa bir süre yeter. Sonra ATP'ye bağlı olaylar (protein sentezi, aktif taşıma) durur.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: ATP'nin ekzergonik ve endergonik tepkimeler arasındaki köprü görevini açıklayınız.</span>Hücresel solunum gibi ekzergonik tepkimelerde açığa çıkan enerji, ADP'ye inorganik fosfat bağlanarak ATP sentezlenmesinde (fosforilasyon) kullanılır. ATP su kullanılarak ADP ve inorganik fosfata parçalandığında (defosforilasyon) enerji açığa çıkar. Bu enerji protein sentezi, aktif taşıma gibi endergonik olaylarda kullanılır. Böylece ATP, enerji açığa çıkaran tepkimeler ile enerji gerektiren tepkimeler arasında bağlantı kurar.</div>
+</section>
+
+<section data-id="1-6" data-unit="1" data-star="1" data-title="ATP'nin özellikleri ve canlılık için önemi">
+<div class="box ogr"><b>⭐ Öğretmenin vurguladığı</b>ATP sorusunda "neden depolanmaz, neden her hücre kendisi üretir, ATP üretilmezse ne olur" gibi yorum soruları gelebilir.</div>
+<h3>ATP'nin özellikleri</h3>
+<ol>
+<li><b>Ortaktır (evrenseldir):</b> Bakteriden insana bütün canlılarda kullanılır.</li>
+<li><b>Depolanmaz:</b> Uzun süreli enerji deposu değildir, <b>kısa süreli enerji taşıyıcısıdır</b>. İhtiyaç olunca üretilir, hemen tüketilir.<br>Uzun süreli enerji depoları: <b>yağ</b>, <b>glikojen</b> (hayvanlarda karaciğer ve kasta), <b>nişasta</b> (bitkilerde).</li>
+<li><b>Hücre zarından geçemez:</b> Büyük ve yüklü bir moleküldür. Bir hücreden diğerine aktarılamaz, kanla taşınmaz.<br>→ <b>Her hücre kendi ATP'sini kendisi üretir.</b> Kanla hücrelere taşınan ATP değil, glikoz ve O₂'dir.</li>
+<li><b>Nerede üretilir?</b> Hücresel solunumla (besinin sitoplazma ve mitokondride parçalanması), oksijensiz ortamda fermantasyonla. Bitkilerde ayrıca fotosentez sırasında kloroplastta.</li>
+<li><b>Enerjisi başka biçimlere dönüşür:</b> hareket (kas), elektrik (sinirsel iletim), ısı (vücut sıcaklığı), ışık (ateş böceği).</li>
+</ol>
+<div class="box akil"><b>🧠 Akılda kalsın</b>Enerjinin asıl kaynağı <b>besinlerdir</b> (en başta Güneş). ATP ise hücrenin bu enerjiyi <b>doğrudan kullanabildiği taşıyıcı moleküldür</b>.</div>
+<h3>Deney: ATP üretimi engellenirse ne olur?</h3>
+<p>Aynı özellikteki hücreler iki kaba konur. Birine ATP üretimini engelleyen bir madde eklenir.</p>
+<div class="tw"><table>
+<tr><th>Gözlem</th><th>Kontrol grubu<br><small>besin + O₂</small></th><th>Deney grubu<br><small>+ ATP'yi engelleyen madde</small></th></tr>
+<tr><td>Canlılık</td><td>Devam ediyor</td><td>Belirgin şekilde azalıyor</td></tr>
+<tr><td>Aktif taşıma</td><td>Devam ediyor</td><td>Büyük ölçüde duruyor</td></tr>
+<tr><td>Kasılma / hareket</td><td>Devam ediyor</td><td>Gerçekleşmiyor</td></tr>
+<tr><td>Çoğalma</td><td>Var</td><td>Yok</td></tr>
+</table></div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b>"ATP tableti yutarsak ATP kas hücrelerine girip doğrudan enerji verir" iddiası <b>yanlıştır</b>. ATP hücre zarından geçemez, hücreden hücreye aktarılamaz. Her hücre ATP'yi kendi içinde üretir.</div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b>Deney grubunda ortamda <b>besin (glikoz) vardır</b> ama hücreler yine ölür. Çünkü besindeki enerji ATP'ye aktarılamazsa hücre bu enerjiyi kullanamaz.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Deney bulgularına dayanarak ATP'nin canlılık için önemini açıklayınız.</span>ATP üretimi engellenen hücrelerde aktif taşıma, kasılma ve bölünme gibi enerji gerektiren faaliyetler durmuş, hücrelerin canlılığı olumsuz etkilenmiştir. Bu, canlı hücrelerin yaşamsal faaliyetleri için ATP'ye ihtiyaç duyduğunu gösterir. ATP üretilemezse hücre bölünemez, madde alışverişi yapamaz, enzimatik tepkimeleri gerçekleştiremez ve ölür. Yani enerji canlılık için yalnızca önemli değil, <b>zorunludur</b>.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: ATP hücre zarından geçemez ve depolanamaz. Buna göre hücreler enerji ihtiyacını nasıl karşılar?</span>ATP büyük ve yüklü bir molekül olduğu için hücre zarından geçemez, bir hücreden diğerine aktarılamaz ve depolanamaz. Bu nedenle her canlı hücre ihtiyaç duyduğu ATP'yi hücresel solunum veya fermantasyonla kendi içinde, anlık olarak üretir ve tüketir.</div>
+</section>
+
+<section data-id="1-7" data-unit="1" data-title="Kış uykusu, sıcakkanlı ve soğukkanlı canlılar">
+<p>Kirpi, ayı, fındık faresi, yarasa gibi bazı memeliler kış gelmeden önce bol beslenir ve vücutlarında <b>yüksek miktarda yağ ve glikojen</b> depolar.</p>
+<h3>Kış uykusunda enerji nereden gelir?</h3>
+<div class="flow">
+<div class="st">🥜 Depo yağ ve glikojen</div>
+<div class="ar">↓ hücresel solunumla parçalanır</div>
+<div class="st">⚡ ATP üretilir</div>
+<div class="ar">↓</div>
+<div class="st">❤️ Vücut sıcaklığı belli düzeyde tutulur, kalp atar, solunum sürer</div>
+</div>
+<ul>
+<li><b>Metabolizma</b> (hücredeki tüm tepkimeler) yavaşlar ama <b>durmaz</b>.</li>
+<li>Vücut sıcaklığı düşer ama belirli bir düzeyin altına inmez.</li>
+<li>Besin alınmadığı için depolar tükenir, canlı baharda zayıflamış olarak uyanır.</li>
+</ul>
+<h3>Sıcakkanlı ve soğukkanlı canlılar</h3>
+<div class="tw wide"><table>
+<tr><th></th><th>Sıcakkanlı<br><small>memeliler, kuşlar</small></th><th>Soğukkanlı<br><small>sürüngenler, kurbağa, balık</small></th></tr>
+<tr><td>Vücut sıcaklığı</td><td>Sabit</td><td>Ortama göre değişir</td></tr>
+<tr><td>Ortam soğuyunca</td><td>Isı kaybı artar, ısı üretmek için daha çok besin parçalanır → <b>O₂ tüketimi ve ATP üretimi artar</b></td><td>Vücut soğur, enzimler yavaşlar → <b>metabolizma ve O₂ tüketimi azalır</b></td></tr>
+<tr><td>Ortam ısınınca</td><td>Isı üretmeye daha az enerji gerekir → O₂ tüketimi azalır</td><td>Vücut ısınır, enzimler hızlanır → O₂ tüketimi artar</td></tr>
+<tr><td>Kışın</td><td>Kış uykusunda da vücut sıcaklığını belirli düzeyde tutmak için <b>depo yağı harcar</b></td><td>Hareketsiz kalır, metabolizması ortamla birlikte kendiliğinden yavaşlar. Isı üretmek için <b>enerji harcamaz</b></td></tr>
+</table></div>
+<figure class="svgw">
+<svg viewBox="0 0 320 200" role="img" aria-label="Sıcaklığa göre oksijen tüketimi grafiği">
+  <line x1="40" y1="170" x2="300" y2="170" stroke="currentColor" style="color:var(--muted)"/>
+  <line x1="40" y1="170" x2="40" y2="18" stroke="currentColor" style="color:var(--muted)"/>
+  <text x="170" y="195" font-size="10" text-anchor="middle" class="t-m">Ortam sıcaklığı (°C) →</text>
+  <text x="14" y="95" font-size="10" text-anchor="middle" class="t-m" transform="rotate(-90 14 95)">O₂ tüketimi →</text>
+  <text x="70" y="183" font-size="9" text-anchor="middle" class="t-m">10</text><text x="140" y="183" font-size="9" text-anchor="middle" class="t-m">20</text><text x="210" y="183" font-size="9" text-anchor="middle" class="t-m">30</text><text x="270" y="183" font-size="9" text-anchor="middle" class="t-m">40</text>
+  <polyline points="70,35 140,72 210,105 270,124" fill="none" stroke="#d62828" stroke-width="3"/>
+  <polyline points="70,163 140,157 210,146 270,132" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="6 4"/>
+  <text x="80" y="30" font-size="11" font-weight="700" style="fill:#d62828">Fare (sıcakkanlı)</text>
+  <text x="72" y="142" font-size="11" font-weight="700" style="fill:#3b82f6">Kertenkele (soğukkanlı)</text>
+</svg>
+<figcaption>Örnek grafik. Fare soğukta, kertenkele sıcakta daha çok O₂ tüketir.</figcaption>
+</figure>
+<div class="box akil"><b>🧠 Akılda kalsın</b>O₂ tüketimi artarsa parçalanan besin ve üretilen ATP de artar.</div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b>Kertenkelenin sıcakta daha çok O₂ tüketmesi vücut sıcaklığını sabit tuttuğu anlamına gelmez. Vücudu ısındığı için enzimleri hızlanır ve metabolizması hızlanır.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Kış uykusundaki memeli besin almadığı hâlde yaşamını nasıl sürdürür?</span>Kış uykusuna yatmadan önce vücudunda depoladığı yağ ve glikojen, hücresel solunumla parçalanır. Açığa çıkan enerji ATP'ye aktarılır. Bu ATP, vücut sıcaklığını belirli düzeyde tutmak, kalp atışı ve solunum gibi yaşamsal faaliyetleri sürdürmek için kullanılır. Metabolizma yavaşladığı için depolar uzun süre yeter.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Kış uykusundaki memeliler ile kışın hareketsiz kalan sürüngenlerin enerji tasarrufu arasındaki fark nedir?</span>Memeliler sıcakkanlıdır. Kış uykusunda metabolizmalarını yavaşlatsalar da vücut sıcaklıklarını belirli bir düzeyde tutmak için depo besinlerinden enerji harcarlar. Sürüngenler soğukkanlıdır. Vücut sıcaklıkları ortamla birlikte düşer, metabolizmaları kendiliğinden yavaşlar ve ısı üretmek için enerji harcamazlar.</div>
+</section>
+
+<section data-id="1-8" data-unit="1" data-title="Hızlı tekrar: Enerji ve ATP">
+<ul class="qr">
+<li>⚡ Enerji iş yapabilme yeteneğidir. Yok olmaz, biçim değiştirir.</li>
+<li>☀️ Güneş → fotosentez → besin (kimyasal enerji) → hücresel solunum → <b>ATP</b> → yaşamsal faaliyetler</li>
+<li>🚫 Besin enerjisi doğrudan kullanılmaz, önce ATP'ye aktarılır.</li>
+<li>🧩 ATP = <b>adenin + riboz + 3 fosfat</b> (RNA'daki adenin nükleotidine benzer, farkı 3 fosfat). Bağlar: 1 glikozit, 1 ester, 2 yüksek enerjili fosfat bağı.</li>
+<li>🔢 Adenozin → AMP (1P) → ADP (2P) → ATP (3P)</li>
+<li>🔻 Defosforilasyon: ATP + H₂O → ADP + Pᵢ + Enerji (hidroliz, <b>ekzergonik</b>)</li>
+<li>🔺 Fosforilasyon: ADP + Pᵢ + Enerji → ATP + H₂O (<b>endergonik</b>)</li>
+<li>🔁 ATP–ADP döngüsü: ATP sürekli yıkılır ve yeniden yapılır.</li>
+<li>🌉 ATP, ekzergonik tepkimelerden aldığı enerjiyi endergonik tepkimelere taşır.</li>
+<li>📦 ATP depolanmaz, hücre zarından geçemez, her hücre kendi ATP'sini üretir. Uzun süreli depolar: yağ, glikojen, nişasta.</li>
+<li>☠️ ATP üretilemezse aktif taşıma, kasılma, bölünme durur → hücre ölür.</li>
+<li>🦔 Kış uykusu: depo yağ → solunum → ATP → vücut ısısı korunur.</li>
+<li>🐭 Sıcakkanlı soğukta daha çok O₂ tüketir. 🦎 Soğukkanlı sıcakta daha çok O₂ tüketir.</li>
+</ul>
+</section>
+
+<!-- ===================== ÜNİTE 2 ===================== -->
+<section data-id="2-1" data-unit="2" data-star="1" data-title="Fotosentez nedir? Genel denklem">
+<div class="box ogr"><b>⭐ Öğretmenin vurguladığı</b>"Enerji ve fotosentez iyi çalışın." Sınıfta sorulan 2 sorudan biri <b>fotosentezde kullanılan ve üretilen maddeler</b>.</div>
+<p class="lead"><b>Fotosentez:</b> Klorofil taşıyan canlıların <b>ışık enerjisini</b> kullanarak inorganik maddelerden (<b>CO₂ ve H₂O</b>) organik madde (<b>glikoz</b>) üretmesidir.</p>
+<ul>
+<li><b>Kimler yapar?</b> Bitkiler (tam parazit bitkiler hariç), algler, öglena gibi bazı protistler, siyanobakteriler ve bazı bakteriler.</li>
+<li><b>Nerede?</b> Bitkilerde <b>kloroplast</b> organelinde. En çok yapraklarda gerçekleşir.</li>
+</ul>
+<h3>Genel denklem</h3>
+<div class="formula">6CO₂ + 6H₂O <span style="color:var(--u2)">—ışık, klorofil→</span> C₆H₁₂O₆ + 6O₂<small>Sadeleştirilmiş denklem (yazılıda bunu yazman yeterli)</small></div>
+<div class="formula">6CO₂ + 12H₂O → C₆H₁₂O₆ + 6O₂ + 6H₂O<small>Ayrıntılı denklem: su hem kullanılır hem açığa çıkar.</small></div>
+<div class="grid2">
+<div class="gcard"><h4>⬅️ Kullanılanlar</h4><ul><li>Karbondioksit (CO₂)</li><li>Su (H₂O)</li></ul><h4 style="margin-top:8px">⚙️ Gerekli koşullar</h4><ul><li>Işık enerjisi</li><li>Klorofil</li><li>Enzimler</li></ul></div>
+<div class="gcard"><h4>➡️ Üretilenler</h4><ul><li>Glikoz (C₆H₁₂O₆) → fazlası <b>nişasta</b> olarak depolanır</li><li>Oksijen (O₂)</li><li>(Su)</li></ul></div>
+</div>
+<h3>Fotosentezde enerji dönüşümü</h3>
+<div class="formula">Işık enerjisi → Kimyasal bağ enerjisi (glikozda)</div>
+<p>Fotosentez enerji gerektiren (<b>endergonik</b>) bir yapım olayıdır. Güneşin enerjisi besinin bağlarına depolanır.</p>
+<h3>Fotosentezin önemi</h3>
+<ul>
+<li>Canlılar için hem <b>besin</b> hem <b>oksijen</b> kaynağıdır.</li>
+<li>Atmosferdeki CO₂ azalır, O₂ artar.</li>
+<li>Besin zincirinin temelini oluşturur, bütün tüketiciler dolaylı olarak fotosenteze bağlıdır.</li>
+</ul>
+<div class="box akil"><b>🧠 Akılda kalsın: Fotosentez ve solunum terstir</b><ul><li>Fotosentez: CO₂ + H₂O → glikoz + O₂ (enerji depolanır)</li><li>Hücresel solunum: glikoz + O₂ → CO₂ + H₂O + ATP (enerji açığa çıkar)</li></ul>Bitkiler hem fotosentez hem solunum yapar. Hayvanlar sadece solunum yapar.</div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b>Bitkiler gece de gündüz de <b>solunum yapar</b> ve O₂ kullanır. Işıkta fotosentez solunumdan hızlı olduğu için dışarı <b>net O₂</b> verilir. Karanlıkta sadece solunum olur, dışarı <b>CO₂</b> verilir.</div>
+</section>
+
+<section data-id="2-2" data-unit="2" data-star="1" data-title="Kullanılan ve üretilen maddeler: nereden gelir, nereye gider?">
+<div class="box ogr"><b>⭐ Öğretmenin vurguladığı</b>Bu ders öğretmenin işaret ettiği ikinci sorunun konusudur. Her maddenin <b>nereden geldiğini</b>, <b>ne işe yaradığını</b> ve <b>hangi deneyle gösterildiğini</b> bilmelisin.</div>
+<div class="exp"><h4>🌬️ Karbondioksit (CO₂) – kullanılır</h4>
+<div class="row"><span class="lbl">Nereden?</span> Havadan, yapraktaki gözeneklerden (stoma) girer. Bitkinin <b>kendi solunumunda</b> oluşan CO₂ de kullanılır. Su bitkileri suda çözünmüş CO₂'yi kullanır.</div>
+<div class="row"><span class="lbl">Görevi:</span> Glikozun <b>karbon kaynağıdır</b>. Karbon atomları organik moleküllerin yapısına katılır.</div>
+<div class="row"><span class="lbl">Yoksa:</span> Fotosentez yavaşlar veya durur, glikoz ve nişasta oluşmaz.</div>
+<div class="row"><span class="lbl">Bilgi:</span> Ağaçların kütlesinin yaklaşık %50–80'i karbondan oluşur. Bu karbon topraktan değil, <b>havadaki CO₂'den</b> gelir.</div></div>
+<div class="exp"><h4>💧 Su (H₂O) – kullanılır</h4>
+<div class="row"><span class="lbl">Nereden?</span> Topraktan kökle, <b>minerallerle birlikte</b> alınır, iletim borularıyla yaprağa taşınır.</div>
+<div class="row"><span class="lbl">Görevi:</span> Işık enerjisiyle parçalanır. Buna <b>fotoliz</b> (ışıkla parçalanma) denir. Fotoliz sonucu elektron, H⁺ iyonları ve <b>O₂</b> oluşur.</div>
+<div class="formula">2H₂O → O₂ + 4H⁺ + 4e⁻</div>
+<div class="row">👉 Fotosentezde açığa çıkan <b>O₂'nin kaynağı sudur</b>. Glikozdaki hidrojenler de sudan gelir.</div></div>
+<div class="exp"><h4>☀️ Işık – gerekli enerji</h4>
+<div class="row">Fotosentezin enerji kaynağıdır. Klorofil tarafından soğurulur (emilir). Işık yoksa fotosentez olmaz.</div>
+<div class="row">Işık bir madde değil, <b>enerjidir</b>.</div></div>
+<div class="exp"><h4>🟢 Klorofil – gerekli pigment</h4>
+<div class="row">Işığı soğuran yeşil pigmenttir (renk maddesi). Kloroplastta bulunur.</div>
+<div class="row">Yapısında <b>magnezyum (Mg)</b> vardır. Yapımı için <b>demir (Fe)</b> gerekir.</div>
+<div class="row">Klorofil yoksa (yaprağın beyaz bölgesi) ışık alsa bile fotosentez olmaz. Klorofil fotosentezde <b>harcanmaz</b>, gerekli bir koşuldur.</div></div>
+<div class="exp"><h4>🫧 Oksijen (O₂) – üretilir</h4>
+<div class="row">Suyun fotolizinden gelir. Yapraktan atmosfere verilir. Bir kısmını bitki kendi solunumunda kullanır.</div></div>
+<div class="exp"><h4>🍞 Glikoz → Nişasta – üretilir</h4>
+<div class="row">Glikozun fazlası yaprakta <b>nişasta</b> olarak depolanır. Glikoz ayrıca selüloz, yağ, protein ve vitamin yapımında kullanılır.</div>
+<div class="row"><span class="lbl">Testi:</span> İyot damlatılır. Nişasta varsa <b>mavi-mor</b> (koyu mavi-siyah) olur. Yoksa iyodun kendi rengi olan <b>sarı-kahverengi</b> görülür.</div></div>
+<h3>Özet tablo</h3>
+<div class="tw"><table>
+<tr><th>Kullanılan / gerekli</th><th>Üretilen</th></tr>
+<tr><td>Karbondioksit (CO₂)</td><td>Glikoz (C₆H₁₂O₆) → nişasta</td></tr>
+<tr><td>Su (H₂O)</td><td>Oksijen (O₂)</td></tr>
+<tr><td>Işık enerjisi</td><td>(Su)</td></tr>
+<tr><td>Klorofil (harcanmaz)</td><td></td></tr>
+</table></div>
+<h3>Atomlar nereden gelir?</h3>
+<div class="tw"><table>
+<tr><th>Atom</th><th>Kaynağı</th></tr>
+<tr><td>Açığa çıkan O₂'deki oksijen</td><td><b>H₂O</b></td></tr>
+<tr><td>Glikozdaki karbon (C)</td><td><b>CO₂</b></td></tr>
+<tr><td>Glikozdaki oksijen (O)</td><td><b>CO₂</b></td></tr>
+<tr><td>Glikozdaki hidrojen (H)</td><td><b>H₂O</b></td></tr>
+</table></div>
+<div class="box ornek"><b>💡 Örnek: İzotop deneyi</b>Bitkiye verilen suyun oksijeni işaretlenirse (ağır oksijen izotopu) açığa çıkan O₂ işaretli olur. CO₂'nin oksijeni işaretlenirse açığa çıkan O₂ işaretsizdir, işaret glikozda görülür. → O₂ sudan gelir.</div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b>"Fotosentezde açığa çıkan O₂, CO₂'den gelir" → <b>Yanlış</b>. O₂'nin kaynağı <b>sudur</b> (Hill deneyi ve izotop deneyleri).</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Fotosentezde kullanılan ve üretilen maddeleri yazınız.</span>Fotosentezde karbondioksit ve su kullanılır, ışık enerjisi ve klorofil gereklidir. Glikoz ve oksijen üretilir: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂. CO₂ glikozun karbon kaynağıdır. Su ışıkla parçalanır (fotoliz) ve açığa çıkan oksijenin kaynağı sudur. Glikozun fazlası nişasta olarak depolanır.</div>
+</section>
+
+<section data-id="2-3" data-unit="2" data-title="Bilim insanları ve tarihî deneyler">
+<div class="tl">
+<div class="ev"><span class="yr">1600'ler</span><h4>Jan Baptist van Helmont – Söğüt deneyi</h4>
+<p>2,5 kg söğüt fidanını 80 kg kuru toprağa dikti, 5 yıl boyunca sadece suladı.</p>
+<div class="tw"><table><tr><th></th><th>Başta</th><th>5 yıl sonra</th></tr><tr><td>Bitki</td><td>2,5 kg</td><td>75 kg</td></tr><tr><td>Kuru toprak</td><td>80 kg</td><td>79,9 kg</td></tr></table></div>
+<p><b>Sonuç:</b> Bitkinin kütle artışı topraktan gelmiyor. Van Helmont artışı <b>suya</b> bağladı.</p>
+<p><b>Eksik yönü:</b> Havadaki CO₂'yi hesaba katmadı. Bugün biliyoruz ki kütle artışının büyük kısmı <b>havadaki CO₂'deki karbondan</b> gelir. Topraktaki küçük azalma alınan minerallerden kaynaklanır.</p></div>
+<div class="ev"><span class="yr">1774</span><h4>Joseph Priestley – Mum, fare ve bitki</h4>
+<ul><li>Kapalı fanusta yanan mum bir süre sonra söner, fare bir süre sonra ölür.</li><li>Fanusa yeşil bir bitki konunca mum yanmaya, fare yaşamaya devam eder.</li></ul>
+<p><b>Sonuç:</b> Bitkiler havayı "temizler", yani yanmayı ve yaşamı destekleyen gazı (O₂) üretir.</p>
+<p><b>Bugünkü açıklama:</b> Mum ve fare O₂ tüketip CO₂ verir. Bitki ışıkta bu CO₂'yi kullanır ve O₂ üretir.</p></div>
+<div class="ev"><span class="yr">1779</span><h4>Jan Ingenhousz – Işık gerekli</h4>
+<ul><li>Su bitkileri ışıkta gaz kabarcıkları (O₂) çıkarır, karanlıkta çıkarmaz.</li><li>Fotosentez için <b>ışık gereklidir</b>.</li><li>Fotosentezi bitkinin <b>yeşil kısımları</b> yapar.</li><li>Bitkiler karanlıkta CO₂ verir (solunum).</li></ul></div>
+<div class="ev"><span class="yr">1937</span><h4>Robert Hill – O₂ sudan gelir</h4>
+<p>Bitki hücresinden ayrılmış kloroplastlara ışık, su ve hidrojen yakalayıcı bir madde verdi. Ortamda <b>CO₂ yoktu</b>, buna rağmen <b>O₂ oluştu</b>.</p>
+<div class="formula">2H₂O → O₂ + 4H⁺ + 4e⁻<small>Hill tepkimesi</small></div>
+<p><b>Sonuç:</b> Açığa çıkan O₂'nin kaynağı CO₂ değil <b>H₂O</b>'dur. O₂ ışığın kullanıldığı tepkimelerde oluşur.</p></div>
+<div class="ev"><span class="yr">1946'dan itibaren · 1961 Nobel</span><h4>Melvin Calvin</h4>
+<p>Radyoaktif karbon kullanarak atmosferdeki CO₂'nin glikoza (organik maddeye) nasıl dönüştürüldüğünü açıkladı. Bu tepkimelere <b>Calvin döngüsü</b> denir.</p></div>
+</div>
+<h3>Kim neyi gösterdi?</h3>
+<div class="tw"><table>
+<tr><th>Bilim insanı</th><th>Gösterdiği</th></tr>
+<tr><td>Van Helmont</td><td>Bitki kütlesi topraktan gelmez (suya bağladı)</td></tr>
+<tr><td>Priestley</td><td>Bitkiler havayı yenileyen gazı (O₂) üretir</td></tr>
+<tr><td>Ingenhousz</td><td>Işık gerekli, yeşil kısımlar fotosentez yapar, karanlıkta CO₂ verilir</td></tr>
+<tr><td>Hill</td><td>O₂'nin kaynağı sudur</td></tr>
+<tr><td>Calvin</td><td>CO₂'nin glikoza dönüşüm tepkimeleri</td></tr>
+</table></div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b><ul><li>Işığın gerekli olduğunu <b>Priestley değil Ingenhousz</b> gösterdi.</li><li>Van Helmont CO₂'yi bilmiyordu, sonucu tam doğru değildir.</li></ul></div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Priestley deneyinde bitkinin fareyi yaşatmasını gazlar bakımından açıklayınız.</span>Mum ve fare ortamdaki O₂'yi kullanıp CO₂ verir. Bitki ışıkta fotosentez yaparak bu CO₂'yi kullanır ve O₂ üretir (6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂). Böylece ortamdaki O₂ yenilenir ve fare yaşamaya devam eder.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Priestley deneyi karanlıkta yapılsaydı ne olurdu? Ingenhousz'un keşfiyle açıklayınız.</span>Ingenhousz fotosentez için ışığın gerekli olduğunu göstermiştir. Karanlıkta bitki fotosentez yapamaz ve O₂ üretemez. Üstelik solunumla O₂ tüketip CO₂ verir. Bu yüzden fare yaşayamazdı.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Hill'in çalışmasının bilime katkısı nedir?</span>Hill, CO₂ bulunmayan ortamda bile ışık, su ve hidrojen yakalayıcı varlığında kloroplastların O₂ oluşturduğunu göstermiştir. Bu, fotosentezde açığa çıkan O₂'nin CO₂'den değil, suyun ışıkla parçalanmasından (fotoliz) kaynaklandığını kanıtlamıştır.</div>
+</section>
+
+<section data-id="2-4" data-unit="2" data-star="1" data-title="Deney – madde eşleştirmesi (okul deneyleri)">
+<div class="box ogr"><b>⭐ Öğretmenin vurguladığı</b>"Deneyler ile fotosentezi etkileyen maddeleri ilişkilendir." Bu tabloyu iyi öğren.</div>
+<div class="tw wide"><table>
+<tr><th>Ne gösterilir?</th><th>Deney</th><th>Sonuç</th></tr>
+<tr><td><b>Işık</b> gerekli</td><td>Yaprağın bir kısmı folyoyla kapatılır</td><td>Kapalı kısımda nişasta yok</td></tr>
+<tr><td><b>CO₂</b> gerekli</td><td>Fanusa KOH (CO₂ tutucu) konur</td><td>KOH'lu fanustaki bitkide nişasta yok</td></tr>
+<tr><td><b>CO₂</b> gerekli (su bitkisi)</td><td>NaHCO₃'lü su ile kaynatılmış su karşılaştırılır</td><td>Kaynatılmış suda kabarcık yok</td></tr>
+<tr><td><b>Klorofil</b> gerekli</td><td>Alacalı (yeşil-beyaz) yaprak</td><td>Beyaz kısımda nişasta yok</td></tr>
+<tr><td><b>Su</b> gerekli</td><td>Sulanan ve sulanmayan bitki</td><td>Sulanmayan bitkide nişasta yok</td></tr>
+<tr><td><b>O₂</b> üretilir</td><td>Elodea + huni + ters test tüpü</td><td>Biriken gaz kor halindeki çubuğu alevlendirir</td></tr>
+<tr><td><b>Nişasta</b> üretilir</td><td>İyot testi</td><td>Mavi-mor renk</td></tr>
+<tr><td><b>Işık şiddeti</b> hızı etkiler</td><td>Lamba yaklaştırılıp uzaklaştırılır</td><td>Lamba yaklaştıkça kabarcık artar</td></tr>
+</table></div>
+
+<h3>Ön hazırlık: Bitki neden önce karanlıkta bekletilir?</h3>
+<p>Bitki deneyden önce 1–2 gün karanlıkta bekletilir. Karanlıkta fotosentez olmaz, yapraktaki eski nişasta parçalanıp kullanılır ve yaprak <b>nişastasız</b> kalır. Böylece deney sonunda görülen nişastanın <b>deney sırasında yapıldığından</b> emin olunur.</p>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b>Bitki karanlıkta bekletilerek yapraklarda önceden bulunan nişastanın tükenmesi sağlanır. Böylece deney sonunda iyotla tespit edilen nişastanın deney süresince yapılan fotosentezden kaynaklandığı anlaşılır.</div>
+
+<h3>İyot testi nasıl yapılır?</h3>
+<ol class="steps">
+<li><b>Haşlama:</b> Yaprak kaynar suda birkaç dakika bekletilir. Hücreler ölür, zarlar parçalanır, iyot içeri girebilir.</li>
+<li><b>Alkolde bekletme:</b> Yaprak su banyosundaki sıcak alkole konur. Klorofil alkolde çözünür, yaprağın rengi açılır, renk değişimi kolay görülür. (Alkol yanıcı olduğu için doğrudan ateşte ısıtılmaz.)</li>
+<li><b>Yıkama:</b> Alkolün sertleştirdiği yaprak suyla yıkanıp yumuşatılır.</li>
+<li><b>İyot damlatma:</b> Nişasta varsa mavi-mor, yoksa sarı-kahverengi.</li>
+</ol>
+
+<h3>☀️ Işık: Folyo deneyi</h3>
+<p>Karanlıkta bekletilen bitkinin bir yaprağının ortası alüminyum folyoyla kapatılır. Bitki birkaç saat güneşte bırakılır, sonra yaprağa iyot testi yapılır.</p>
+<h3>🟢 Klorofil: Alacalı yaprak deneyi</h3>
+<p>Yeşil-beyaz alacalı yapraklı bitki ışıkta bekletilir, sonra yaprağa iyot testi yapılır.</p>
+<figure class="svgw">
+<svg viewBox="0 0 320 210" role="img" aria-label="İyot testi sonrası folyolu ve alacalı yaprak">
+  <defs>
+    <clipPath id="lf1"><path d="M80 175 Q20 100 80 20 Q140 100 80 175 Z"/></clipPath>
+    <clipPath id="lf2"><path d="M240 175 Q180 100 240 20 Q300 100 240 175 Z"/></clipPath>
+  </defs>
+  <path d="M80 175 Q20 100 80 20 Q140 100 80 175 Z" fill="#1f3a8a"/>
+  <rect x="20" y="78" width="120" height="40" fill="#c98a2b" clip-path="url(#lf1)"/>
+  <line x1="80" y1="22" x2="80" y2="190" stroke="#0b1a45" stroke-width="2"/>
+  <path d="M240 175 Q180 100 240 20 Q300 100 240 175 Z" fill="#c98a2b"/>
+  <path d="M240 160 Q205 100 240 38 Q275 100 240 160 Z" fill="#1f3a8a" clip-path="url(#lf2)"/>
+  <line x1="240" y1="22" x2="240" y2="190" stroke="#0b1a45" stroke-width="2"/>
+  <text x="80" y="203" font-size="11" text-anchor="middle" font-weight="700">Folyolu yaprak</text>
+  <text x="240" y="203" font-size="11" text-anchor="middle" font-weight="700">Alacalı yaprak</text>
+</svg>
+<figcaption><span style="color:#1f3a8a;font-weight:700">■ Mavi-mor</span>: nişasta var · <span style="color:#c98a2b;font-weight:700">■ Sarı-kahverengi</span>: nişasta yok<br>Folyolu yaprakta ortadaki bant (ışık almayan kısım) nişastasızdır. Alacalı yaprakta kenardaki beyaz kısım (klorofilsiz) nişastasızdır.</figcaption>
+</figure>
+<div class="grid2">
+<div class="gcard"><h4>Folyo deneyi</h4><ul><li>Folyolu kısım: <b>sarı-kahverengi</b> → nişasta yok</li><li>Açık kısım: <b>mavi-mor</b> → nişasta var</li><li><b>Folyonun görevi:</b> Işığı engellemek. Aynı yaprağın açık kısmı karşılaştırma (kontrol) görevi görür.</li><li>Sonuç: <b>Işık gerekli</b>.</li></ul></div>
+<div class="gcard"><h4>Alacalı yaprak</h4><ul><li>Yeşil kısım: <b>mavi-mor</b> → nişasta var</li><li>Beyaz kısım: ışık aldığı hâlde <b>sarı-kahverengi</b> → nişasta yok</li><li>Neden: Beyaz kısımda <b>klorofil yoktur</b>, ışık soğurulamaz.</li><li>Sonuç: <b>Klorofil gerekli</b>.</li></ul></div>
+</div>
+
+<h3>🌬️ CO₂: KOH deneyi</h3>
+<p>Karanlıkta bekletilmiş iki özdeş bitki iki cam fanusa konur. Fanuslardan birine <b>KOH</b> (potasyum hidroksit) konur. KOH havadaki CO₂'yi tutar. NaOH ve Ca(OH)₂ de aynı işi yapar. İki fanus ışıkta bekletilir, yapraklara iyot testi yapılır.</p>
+<div class="tw"><table><tr><th>Fanus</th><th>CO₂</th><th>İyot sonucu</th></tr><tr><td>KOH'lu</td><td>Yok</td><td>Sarı-kahverengi (nişasta yok)</td></tr><tr><td>Normal</td><td>Var</td><td>Mavi-mor (nişasta var)</td></tr></table></div>
+<p><b>Sonuç:</b> Fotosentez için <b>CO₂ gereklidir</b>.</p>
+<div class="box ornek"><b>💡 Su bitkisi versiyonu</b><b>Sodyum bikarbonat (NaHCO₃)</b> suya CO₂ verir. <b>Kaynatılıp soğutulmuş</b> sudaki CO₂ ise kaynatma sırasında uçar. Işıkta NaHCO₃'lü sudaki bitki kabarcık çıkarır, kaynatılmış sudaki bitki çıkarmaz. → CO₂ gerekli.</div>
+
+<h3>💧 Su deneyi</h3>
+<p>İki özdeş bitkiden birine düzenli su verilir, diğerine verilmez. Işıkta bekletilir, iyot testi yapılır. Sulanmayan bitkide nişasta oluşmaz. → <b>Su gerekli</b>.</p>
+<div class="box tuzak"><b>⚠️ Dikkat</b>Su azlığında yapraktaki gözenekler (stomalar) da kapanır ve CO₂ girişi azalır. Bu yüzden su eksikliği fotosentezi iki yoldan yavaşlatır.</div>
+
+<h3>🫧 O₂: Elodea (su veba otu) deneyi</h3>
+<figure class="svgw">
+<svg viewBox="0 0 320 215" role="img" aria-label="Elodea deney düzeneği">
+  <path d="M18 40 L58 40 L50 18 L26 18 Z" fill="#6b7280"/>
+  <line x1="38" y1="40" x2="38" y2="200" stroke="#6b7280" stroke-width="4"/>
+  <line x1="20" y1="200" x2="60" y2="200" stroke="#6b7280" stroke-width="5"/>
+  <g stroke="#f5b400" stroke-width="2"><line x1="60" y1="46" x2="110" y2="80"/><line x1="58" y1="54" x2="108" y2="105"/><line x1="56" y1="60" x2="100" y2="128"/></g>
+  <text x="38" y="12" font-size="10" text-anchor="middle" font-weight="700">Lamba</text>
+  <rect x="120" y="85" width="150" height="115" rx="6" fill="var(--water)" stroke="#7aa7d6" stroke-width="2"/>
+  <path d="M150 192 L240 192 L203 145 L187 145 Z" fill="none" stroke="#7aa7d6" stroke-width="2"/>
+  <rect x="185" y="18" width="20" height="130" rx="10" fill="var(--water)" stroke="#5d8fc6" stroke-width="2"/>
+  <rect x="187" y="20" width="16" height="28" rx="8" fill="#ffffff" opacity=".85"/>
+  <g fill="#ffffff" stroke="#5d8fc6"><circle cx="195" cy="70" r="3"/><circle cx="192" cy="95" r="2.5"/><circle cx="198" cy="118" r="3"/><circle cx="194" cy="138" r="2"/></g>
+  <g stroke="#2e8b45" stroke-width="3" fill="none"><path d="M195 190 Q190 170 196 150"/><path d="M180 190 Q175 175 186 160"/><path d="M210 190 Q215 172 204 158"/></g>
+  <g fill="#3c9d4e"><ellipse cx="190" cy="172" rx="6" ry="3"/><ellipse cx="201" cy="166" rx="6" ry="3"/><ellipse cx="184" cy="180" rx="5" ry="2.5"/><ellipse cx="208" cy="178" rx="5" ry="2.5"/></g>
+  <text x="212" y="30" font-size="10" font-weight="700">← Toplanan O₂</text>
+  <text x="212" y="78" font-size="10">← Test tüpü</text>
+  <text x="246" y="152" font-size="10">Huni</text>
+  <text x="124" y="160" font-size="10">Elodea</text>
+  <text x="195" y="212" font-size="10" text-anchor="middle" class="t-m">Su + NaHCO₃</text>
+</svg>
+<figcaption>Kabarcıklar tüpün üstünde birikir. Lamba ile bitki arasındaki uzaklık değiştirilerek ışık şiddeti değiştirilebilir.</figcaption>
+</figure>
+<ol class="steps">
+<li>Su dolu kaba Elodea konur, üzerine ters huni kapatılır.</li>
+<li>Huninin borusuna su dolu test tüpü ters çevrilerek geçirilir.</li>
+<li>Düzenek ışıkta bekletilir. Bitkiden çıkan kabarcıklar tüpün üstünde birikir.</li>
+<li>Tüpe <b>kor halindeki (közlenmiş) çubuk</b> sokulur, çubuk <b>alevlenir</b> → gaz <b>O₂</b>'dir.</li>
+</ol>
+<p>Karanlıkta bekletilen düzenekte kabarcık oluşmaz. → Işık gerekli.</p>
+
+<h3>💡 Işık şiddeti deneyi</h3>
+<p>Lamba bitkiye farklı uzaklıklara konur, belirli sürede çıkan kabarcıklar sayılır. Lamba yaklaştıkça <b>ışık şiddeti artar</b>.</p>
+<div class="tw"><table><tr><th>Lambanın uzaklığı</th><th>Kabarcık sayısı (örnek)</th></tr><tr><td>10 cm</td><td>110</td></tr><tr><td>20 cm</td><td>50</td></tr><tr><td>30 cm</td><td>25</td></tr></table></div>
+<p><b>Sonuç:</b> Işık şiddeti arttıkça fotosentez hızı artar.</p>
+<div class="box ornek"><b>💡 Örnek: Üç tüp karşılaştırması</b>
+<div class="tw"><table><tr><th>Tüp</th><th>Sıvı</th><th>Ortam</th><th>Kabarcık</th></tr><tr><td>X</td><td>NaHCO₃'lü su</td><td>Işık</td><td>Var (çok)</td></tr><tr><td>Y</td><td>Kaynatılmış su</td><td>Işık</td><td>Yok</td></tr><tr><td>Z</td><td>NaHCO₃'lü su</td><td>Karanlık</td><td>Yok</td></tr></table></div>
+<ul><li><b>X–Y:</b> Tek fark CO₂ → <b>CO₂ gerekli</b>.</li><li><b>X–Z:</b> Tek fark ışık → <b>ışık gerekli</b>.</li><li><b>Y–Z karşılaştırılmaz:</b> İki koşul birden farklı (hem CO₂ hem ışık).</li><li>Z tüpü ışığa konursa CO₂ olduğu için fotosentez başlar ve kabarcık çıkar.</li></ul></div>
+</section>
+
+<section data-id="2-5" data-unit="2" data-title="Deney kurmanın kuralları: değişkenler">
+<h3>Temel kavramlar</h3>
+<div class="tw"><table>
+<tr><th>Kavram</th><th>Anlamı</th></tr>
+<tr><td><b>Bağımsız değişken</b></td><td>Deneyi yapanın <b>bilerek değiştirdiği</b> tek faktör (neden)</td></tr>
+<tr><td><b>Bağımlı değişken</b></td><td>Bağımsız değişkene bağlı olarak değişen, <b>ölçülen</b> sonuç</td></tr>
+<tr><td><b>Kontrol (sabit) değişkenler</b></td><td>Bütün düzeneklerde <b>aynı tutulan</b> faktörler</td></tr>
+<tr><td><b>Kontrol grubu</b></td><td>Koşulların normal bırakıldığı, karşılaştırma için kullanılan grup</td></tr>
+<tr><td><b>Deney grubu</b></td><td>Bağımsız değişkenin uygulandığı grup</td></tr>
+<tr><td><b>Hipotez</b></td><td>Deneyle test edilebilen tahmin</td></tr>
+</table></div>
+<h3>Deneylere uygulama</h3>
+<div class="tw wide"><table>
+<tr><th>Deney</th><th>Bağımsız</th><th>Bağımlı</th><th>Sabit tutulanlar</th></tr>
+<tr><td>Folyo</td><td>Işık var / yok</td><td>Nişasta (iyot rengi)</td><td>Aynı yaprak, süre, sıcaklık, CO₂</td></tr>
+<tr><td>KOH</td><td>CO₂ var / yok</td><td>Nişasta</td><td>Bitki türü ve büyüklüğü, ışık, süre, sıcaklık, su</td></tr>
+<tr><td>Alacalı yaprak</td><td>Klorofil var / yok</td><td>Nişasta</td><td>Aynı yaprak, ışık, süre</td></tr>
+<tr><td>Lamba mesafesi</td><td>Lambanın uzaklığı (ışık şiddeti)</td><td>Kabarcık sayısı (O₂ miktarı)</td><td>Sıcaklık, CO₂ (NaHCO₃ miktarı), bitki, süre</td></tr>
+<tr><td>Işıklı / karanlık Elodea</td><td>Işığın varlığı</td><td>Kabarcık sayısı</td><td>Sıcaklık, NaHCO₃, bitki büyüklüğü, süre</td></tr>
+</table></div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b><ul><li>Bir deneyde <b>sadece bir</b> değişken değiştirilir. İki koşul birden değişirse sonucun hangisinden kaynaklandığı anlaşılamaz.</li><li>Lamba ısı da verir. Işık şiddeti deneyinde <b>sıcaklık sabit tutulmalıdır</b>, yoksa sonuç sıcaklıktan da etkilenir.</li></ul></div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Deneyin amacını, bağımlı ve bağımsız değişkenini yazınız.</span><b>Amaç:</b> Işık şiddetinin fotosentez hızına etkisini araştırmak.<br><b>Bağımsız değişken:</b> Işık kaynağının bitkiye uzaklığı (ışık şiddeti).<br><b>Bağımlı değişken:</b> Belirli sürede oluşan gaz kabarcığı sayısı.<br><b>Kontrol değişkenleri:</b> Sıcaklık, bitki türü ve büyüklüğü, CO₂ miktarı, süre.</div>
+<div class="box akil"><b>🧠 Akılda kalsın</b>Amaç cümlesi kalıbı: "<b>___'nın fotosentez hızına etkisini araştırmak</b>." Boşluğa bağımsız değişken yazılır.</div>
+</section>
+
+<section data-id="2-6" data-unit="2" data-title="Fotosentezi etkileyen faktörler">
+<p><b>Fotosentez hızı nasıl ölçülür?</b> Birim zamanda çıkan O₂ (kabarcık sayısı), kullanılan CO₂ miktarı ya da oluşan nişasta/glikoz miktarı ölçülür.</p>
+<div class="mini3">
+<div><svg viewBox="0 0 110 85"><line x1="12" y1="70" x2="105" y2="70" stroke="#888"/><line x1="12" y1="70" x2="12" y2="6" stroke="#888"/><path d="M12 70 Q45 18 70 22 L102 22" fill="none" stroke="#15934a" stroke-width="3"/><text x="58" y="82" font-size="8" text-anchor="middle" class="t-m">ışık şiddeti</text></svg>Işık şiddeti</div>
+<div><svg viewBox="0 0 110 85"><line x1="12" y1="70" x2="105" y2="70" stroke="#888"/><line x1="12" y1="70" x2="12" y2="6" stroke="#888"/><path d="M12 70 L62 22 L102 22" fill="none" stroke="#3b82f6" stroke-width="3"/><text x="58" y="82" font-size="8" text-anchor="middle" class="t-m">CO₂ miktarı</text></svg>CO₂ miktarı</div>
+<div><svg viewBox="0 0 110 85"><line x1="12" y1="70" x2="105" y2="70" stroke="#888"/><line x1="12" y1="70" x2="12" y2="6" stroke="#888"/><path d="M12 66 Q50 40 66 14 Q76 30 90 70" fill="none" stroke="#d62828" stroke-width="3"/><text x="58" y="82" font-size="8" text-anchor="middle" class="t-m">sıcaklık</text></svg>Sıcaklık</div>
+</div>
+<p style="text-align:center;font-size:.85em;color:var(--muted)">Dikey eksen: fotosentez hızı</p>
+<div class="tw wide"><table>
+<tr><th>Faktör</th><th>Etkisi</th><th>İlgili deney</th></tr>
+<tr><td><b>Işık şiddeti</b></td><td>Arttıkça hız artar, bir noktadan sonra sabitlenir. Işık yoksa fotosentez olmaz.</td><td>Lamba mesafesi, folyo</td></tr>
+<tr><td><b>Işığın rengi</b></td><td>Klorofil en çok mor-mavi ve kırmızı ışığı soğurur, bu ışıklarda hız yüksektir. Yeşil ışıkta hız en düşüktür.</td><td>Farklı renkli ışık altında kabarcık sayma</td></tr>
+<tr><td><b>CO₂ miktarı</b></td><td>Arttıkça hız belli bir değere kadar artar, sonra sabitlenir. CO₂ tutucu (KOH, NaOH, Ca(OH)₂) varsa hız düşer.</td><td>KOH, NaHCO₃ / kaynatılmış su</td></tr>
+<tr><td><b>Sıcaklık</b></td><td>Fotosentez tepkimelerinin çoğu enzimlerle yürür. Çoğu bitkide ideal sıcaklık <b>yaklaşık 33 °C</b>'dir. <b>35 °C'un üstünde</b> enzimlerin yapısı genellikle bozulur, hız düşer.</td><td>Farklı sıcaklıkta su banyosu</td></tr>
+<tr><td><b>Su</b></td><td>Azsa fotoliz yavaşlar, stomalar kapanır ve CO₂ girişi azalır.</td><td>Sulanan / sulanmayan bitki</td></tr>
+<tr><td><b>Klorofil miktarı</b></td><td>Arttıkça hız artar.</td><td>Alacalı yaprak</td></tr>
+<tr><td><b>Mineraller</b></td><td>Mg klorofilin yapısında, Fe klorofil yapımında gerekir, N da gereklidir. Eksikliğinde yapraklar sararır.</td><td>–</td></tr>
+<tr><td><b>pH</b></td><td>Enzimler belirli pH aralığında çalışır.</td><td>–</td></tr>
+</table></div>
+<div class="box akil"><b>🧠 Akılda kalsın: Sınırlayıcı faktör (minimum kuralı)</b>Fotosentez hızını <b>en yetersiz olan</b> faktör belirler. Örnek: Işık çok ama CO₂ azsa, ışığı artırmak hızı artırmaz, CO₂'yi artırmak gerekir.</div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b>Grafikte çizginin düzleşmesi "fotosentez durdu" demek <b>değildir</b>. Hız artık artmıyor ama aynı hızda devam ediyor. Başka bir faktör sınırlayıcı olmuştur.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Aynı türden, eşit büyüklükte üç su bitkisi aynı uzaklıktan ve aynı şiddette kırmızı, yeşil ve mavi ışıkla aydınlatılıyor, 2 dakikada çıkan kabarcıklar sayılıyor. Deneyin amacını, bağımlı ve bağımsız değişkenini yazınız. En az kabarcık hangi ışıkta çıkar? Nedenini açıklayınız.</span><b>Amaç:</b> Işığın renginin (dalga boyunun) fotosentez hızına etkisini araştırmak.<br><b>Bağımsız değişken:</b> Işığın rengi.<br><b>Bağımlı değişken:</b> 2 dakikada çıkan gaz kabarcığı sayısı.<br><b>Kontrol değişkenleri:</b> Bitki türü ve büyüklüğü, ışık şiddeti, uzaklık, sıcaklık, süre.<br>En az kabarcık <b>yeşil ışıkta</b> çıkar, çünkü klorofil yeşil ışığı çok az soğurur ve fotosentez en düşük hızda gerçekleşir.</div>
+<div class="box ornek"><b>💡 Bağlantı</b>Bugün konuştuğumuz konu: Görünür ışıkta mor ışığın dalga boyu en kısa, enerjisi en fazladır. Kırmızının dalga boyu en uzun, enerjisi en azdır. Klorofil ikisini de iyi soğurur, yeşili ise yansıtır. Yaprak bu yüzden yeşil görünür.</div>
+</section>
+
+<section data-id="2-7" data-unit="2" data-title="Hızlı tekrar: Fotosentez">
+<ul class="qr">
+<li>🌿 Fotosentez: ışık enerjisiyle CO₂ ve H₂O'dan glikoz yapımı. Kloroplastta gerçekleşir.</li>
+<li>🧪 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ (ışık, klorofil)</li>
+<li>⬅️ Kullanılan: CO₂, H₂O. ⚙️ Gerekli: ışık, klorofil, enzim. ➡️ Üretilen: glikoz (→ nişasta), O₂</li>
+<li>💧 O₂ sudan gelir (fotoliz). 🌬️ Glikozdaki C ve O, CO₂'den gelir.</li>
+<li>🔄 Işık enerjisi → kimyasal enerji. Fotosentez endergoniktir.</li>
+<li>🌙 Bitkiler gece de solunum yapar. Karanlıkta CO₂ verirler.</li>
+<li>🌳 Van Helmont: kütle topraktan gelmez. 🕯️ Priestley: bitki havayı yeniler (O₂). 💡 Ingenhousz: ışık gerekli, yeşil kısımlar. 💧 Hill: O₂ sudan. 🔁 Calvin: CO₂ → glikoz.</li>
+<li>🌑 Deneyden önce karanlıkta bekletme: eski nişastayı tüketmek için.</li>
+<li>🟫 Folyo → ışık. 🧂 KOH → CO₂. 🍃 Alacalı → klorofil. 🚱 Susuz bitki → su. 🫧 Elodea + kor çubuk → O₂. 🟦 İyot → nişasta.</li>
+<li>🔵 İyot: nişasta varsa mavi-mor, yoksa sarı-kahverengi.</li>
+<li>📏 Bağımsız: değiştirilen. Bağımlı: ölçülen. Sabitler: aynı tutulanlar. Tek seferde tek değişken.</li>
+<li>📈 Işık ve CO₂: artar → sabitlenir. 🌡️ Sıcaklık: ideal yaklaşık 33 °C, 35 °C üstünde enzim bozulur, hız düşer. 🟢 Yeşil ışıkta hız en düşük.</li>
+<li>⛓️ Hızı en yetersiz faktör belirler (sınırlayıcı faktör).</li>
+</ul>
+</section>
+
+<!-- ===================== ÜNİTE 3 ===================== -->
+<section data-id="3-1" data-unit="3" data-title="Sindirim nedir? Mekanik ve kimyasal sindirim">
+<p class="lead"><b>Sindirim:</b> Karbonhidrat, protein ve yağ gibi büyük moleküllü besinlerin, <b>hücre zarından geçebilecek kadar küçük yapı taşlarına</b> parçalanmasıdır.</p>
+<p><b>Neden gerekli?</b> Büyük moleküller hücre zarından geçemez. Hücreye girip enerji üretimi, yapım ve onarımda kullanılabilmeleri için önce küçültülmeleri gerekir.</p>
+<div class="chain"><span>Besinin alınması</span><em>→</em><span>Sindirim</span><em>→</em><span>Emilim</span><em>→</em><span>Atıkların atılması</span></div>
+<h3>Yapılış biçimine göre</h3>
+<div class="grid2">
+<div class="gcard"><h4>⚙️ Mekanik (fiziksel) sindirim</h4><ul><li>Besin <b>kimyasal yapısı değişmeden</b> küçük parçalara ayrılır.</li><li><b>Enzim kullanılmaz</b>.</li><li>Yüzey alanını artırır, kimyasal sindirimi kolaylaştırır.</li><li>Örnek: dişlerle çiğneme, midenin kas hareketleri, kuşlarda taşlığın öğütmesi, safranın yağları küçük damlacıklara ayırması</li></ul></div>
+<div class="gcard"><h4>🧪 Kimyasal sindirim</h4><ul><li>Besinler <b>enzim ve su</b> kullanılarak yapı taşlarına ayrılır. Buna <b>hidroliz</b> denir.</li><li>Besinin kimyasal yapısı değişir.</li></ul></div>
+</div>
+<div class="tw"><table>
+<tr><th>Besin</th><th>Kimyasal sindirim sonucu</th></tr>
+<tr><td>Karbonhidrat (nişasta)</td><td>Monosakkarit (glikoz)</td></tr>
+<tr><td>Protein</td><td>Amino asit</td></tr>
+<tr><td>Yağ</td><td>Yağ asidi + gliserol</td></tr>
+</table></div>
+<h3>Gerçekleştiği yere göre</h3>
+<div class="chips"><span>🔵 Hücre içi sindirim</span><span>🟢 Hücre dışı sindirim</span><span>🟣 Karma sindirim</span></div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b><ul><li><b>Safra enzim içermez</b>. Yağları sindirmez, sadece küçük damlacıklara ayırır (mekanik).</li><li>Kimyasal sindirim hidrolizdir, yani <b>su harcanır</b>. ATP'nin defosforilasyonunda da su harcanır.</li></ul></div>
+</section>
+
+<section data-id="3-2" data-unit="3" data-title="Hücre içi sindirim">
+<p class="lead"><b>Hücre içi sindirim:</b> Besinin hücre içine alındıktan sonra, hücrenin içinde <b>lizozom enzimleriyle</b> sindirilmesidir.</p>
+<h3>Aşamaları</h3>
+<ol class="steps">
+<li><b>Hücre içine alma:</b> Besin endositozla (hücre zarının besini sararak içeri alması) hücreye alınır. Katı besin söz konusuysa buna fagositoz denir. <b>Besin kofulu</b> oluşur.</li>
+<li><b>Lizozomla birleşme:</b> Besin kofulu, sindirim enzimleri taşıyan <b>lizozom</b> ile birleşir. <b>Sindirim kofulu</b> oluşur.</li>
+<li><b>Sindirim:</b> Lizozom enzimleri besini hidrolizle parçalar.</li>
+<li><b>Geçiş:</b> Oluşan küçük moleküller sitoplazmaya geçer ve kullanılır.</li>
+<li><b>Atma:</b> Sindirilemeyen artıklar ekzositozla (zarla dışarı atma) hücre dışına atılır.</li>
+</ol>
+<h3>Görüldüğü canlılar</h3>
+<div class="chips"><span>🦠 Amip</span><span>🦠 Paramesyum</span><span>🦠 Öglena</span><span>🧽 Süngerler (yaka hücreleri)</span><span>🪼 Hidra (karma sindirimin ikinci aşaması)</span><span>🩸 İnsanda akyuvarlar (mikroorganizmaları yok eder)</span><span>🫀 İnsanda karaciğerdeki Kupffer hücreleri (yaşlanmış alyuvarları parçalar)</span></div>
+<div class="box ornek"><b>💡 Örnek: Akyuvar</b>Akyuvar bir bakteriyi yakalar (fagositoz) → besin kofulu (fagozom) oluşur → lizozomla birleşir → bakteri enzimlerle parçalanır → artıklar dışarı atılır. Burada amaç beslenme değil <b>savunmadır</b> ama olay hücre içi sindirimdir.</div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b>Hücre içi sindirimde sadece <b>hücreye sığabilecek küçük besinler</b> sindirilebilir. Bu, hücre içi sindirimin en büyük dezavantajıdır.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Akyuvarın bakteriyi yok etmesindeki hücre içi sindirim aşamalarını sırasıyla yazınız.</span>1) Bakteri fagositozla hücre içine alınır ve besin kofulu oluşur. 2) Besin kofulu lizozomla birleşerek sindirim kofulunu oluşturur. 3) Lizozom enzimleri bakteriyi hidrolizle parçalar. 4) Oluşan küçük moleküller sitoplazmaya geçer. 5) Artık maddeler ekzositozla hücre dışına atılır.</div>
+</section>
+
+<section data-id="3-3" data-unit="3" data-title="Hücre dışı ve karma sindirim">
+<h3>Hücre dışı sindirim</h3>
+<p>Sindirim enzimleri <b>hücre dışına salgılanır</b>. Besin hücrenin dışında parçalanır, oluşan küçük moleküller <b>aktif ya da pasif taşımayla</b> hücre içine alınır.</p>
+<div class="chips"><span>🍄 Mantarlar (şapkalı mantar, küf)</span><span>🦠 Çürükçül bakteriler</span><span>🐌 Salyangoz</span><span>🌰 Denizkestanesi</span><span>🪱 Toprak solucanı, böcekler</span><span>🐦 Omurgalılar</span><span>🧍 İnsan (ağız, mide, ince bağırsak boşluğu)</span></div>
+<p>Gelişmiş hayvanlarda ağızda başlayıp anüste biten bir sindirim kanalı vardır. Besin bu kanal boyunca kademeli olarak sindirilir ve emilir.</p>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b>"Hücre dışı" <b>vücudun dışı</b> demek değildir. Sindirim kanalı vücudun içindedir ama <b>hücrelerin dışındadır</b>. İnsanın midesinde ve ince bağırsağında olan sindirim hücre dışı sindirimdir.</div>
+<h3>Hücre dışı sindirimin avantajı</h3>
+<ul>
+<li>Hücreden <b>çok daha büyük besinler</b> de sindirilebilir.</li>
+<li>Canlı daha büyük ve çeşitli besin kaynaklarından yararlanır. Bu durum büyük vücutlu çok hücreli canlıların ortaya çıkmasını kolaylaştırmıştır.</li>
+<li>Mantar ve bakteriler ölü canlıları ayrıştırarak maddelerin doğaya geri dönmesini sağlar.</li>
+</ul>
+<h3>Karma sindirim</h3>
+<p>Sindirim önce <b>hücre dışında</b> (sindirim boşluğunda) başlar, parçalar hücrelere alınır ve <b>hücre içinde</b> tamamlanır.</p>
+<div class="chips"><span>🪼 Hidra</span><span>🪱 Planarya</span></div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı: İnsanda iki çeşit de var</b>"İnsanda yalnızca hücre dışı sindirim görülür" yazma. Besinler sindirim kanalında <b>hücre dışı</b> sindirilir, ama <b>akyuvarlarda</b> ve karaciğerdeki <b>Kupffer hücrelerinde</b> <b>hücre içi</b> sindirim de görülür. Ders kitabına göre kuş, kurt, inek ve insanın dördünde de hücre içi ve hücre dışı sindirim görülür.</div>
+<h3>Karşılaştırma</h3>
+<div class="tw"><table>
+<tr><th></th><th>Hücre içi</th><th>Hücre dışı</th></tr>
+<tr><td>Nerede?</td><td>Hücre içinde, sindirim kofulunda</td><td>Hücre dışında (sindirim kanalı veya ortam)</td></tr>
+<tr><td>Enzimler</td><td>Lizozomda, hücre içinde kalır</td><td>Hücre dışına salgılanır</td></tr>
+<tr><td>Besin büyüklüğü</td><td>Küçük olmalı</td><td>Büyük olabilir</td></tr>
+<tr><td>Örnek</td><td>Amip, paramesyum, öglena, sünger, akyuvar, Kupffer hücresi</td><td>Mantar, çürükçül bakteri, salyangoz, denizkestanesi, omurgalıların sindirim kanalı</td></tr>
+</table></div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Amip ve şapkalı mantarın sindirim çeşitlerini açıklayınız.</span><b>Amip:</b> Hücre içi sindirim yapar. Besini besin kofulu içine alır, koful lizozomla birleşir ve besin hücre içinde parçalanır.<br><b>Şapkalı mantar:</b> Hücre dışı sindirim yapar. Enzimlerini dış ortama salgılar, büyük moleküller hücre dışında parçalanır ve küçük moleküller hücre içine alınır.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Hücre dışı sindirimin hücre içi sindirime göre avantajı nedir?</span>Hücre dışı sindirimde enzimler dışarı salgılandığı için hücreden büyük besinler de parçalanabilir. Oluşan küçük moleküller hücreye alınır. Böylece canlı daha büyük ve çeşitli besin kaynaklarından yararlanabilir.</div>
+</section>
+
+<section data-id="3-4" data-unit="3" data-title="Canlı gruplarında sindirim ve omurgasız yapıları">
+<h3>Canlı gruplarına göre sindirim</h3>
+<div class="tw"><table>
+<tr><th>Canlı grubu</th><th>Sindirim çeşidi</th><th>Örnek</th></tr>
+<tr><td>Bakteriler</td><td>Hücre dışı</td><td>Çürükçül bakteriler</td></tr>
+<tr><td>Protistler</td><td>Hücre içi</td><td>Amip, paramesyum, öglena</td></tr>
+<tr><td>Mantarlar</td><td>Hücre dışı</td><td>Şapkalı mantar, küf</td></tr>
+<tr><td>Bitkiler</td><td>Besinini fotosentezle ürettiği için sindirim sistemi yoktur</td><td>Yeşil bitkiler</td></tr>
+<tr><td>Süngerler</td><td>Hücre içi</td><td>Sünger</td></tr>
+<tr><td>Hidra, planarya</td><td>Karma</td><td>Hidra</td></tr>
+<tr><td>Bazı omurgasızlar</td><td>Hücre dışı</td><td>Salyangoz, denizkestanesi, toprak solucanı</td></tr>
+<tr><td>Omurgalılar</td><td>Sindirim kanalında hücre dışı; akyuvar gibi bazı hücrelerde hücre içi</td><td>Balık, kuş, memeli, insan</td></tr>
+</table></div>
+<h3>Sınıflandırma sorusu nasıl cevaplanır?</h3>
+<ol class="steps">
+<li>Önce <b>ölçütü</b> yaz (ör. "besinin hücre içinde mi, hücre dışında mı sindirildiği").</li>
+<li>Canlıları bu ölçüte göre <b>ayrıştır ve gruplandır</b>.</li>
+<li>Grupları <b>isimlendir</b> ve her grubun nedenini "çünkü…" ile yaz.</li>
+</ol>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Amip, öglena, sünger, salyangoz, denizkestanesi ve insanın akyuvar hücresini bir ölçüte göre iki gruba ayırıp grupları isimlendiriniz.</span><b>Ölçüt:</b> Besinin hücre içinde mi, hücre dışına salgılanan enzimlerle mi sindirildiği.<br><b>Hücre içi sindirim:</b> Amip, öglena, sünger, akyuvar. Çünkü besin kofulla hücreye alınır ve lizozom enzimleriyle hücre içinde parçalanır.<br><b>Hücre dışı sindirim:</b> Salyangoz, denizkestanesi. Çünkü sindirim enzimleri hücre dışına salgılanır, besin hücre dışında parçalanır.</div>
+<h3>🧽 Sünger</h3>
+<ul><li>Sindirim kanalı ve sindirim boşluğu <b>yoktur</b>.</li><li>Su küçük deliklerden (ostium) girer, büyük delikten (oskulum) çıkar.</li><li>Sudaki besinleri yaka hücreleri yakalar ve <b>hücre içinde</b> sindirir.</li></ul>
+<h3>🪼 Hidra</h3>
+<ul><li><b>Tek açıklıklı</b> sindirim boşluğu vardır (gastrovasküler boşluk). Ağız hem giriş hem çıkıştır.</li><li>Tentaküllerle (dokunaç) yakalanan besin ağızdan alınır.</li><li>Boşlukta salgılanan enzimlerle kısmen sindirilir (hücre dışı), parçalar hücrelere alınıp sindirim tamamlanır (hücre içi) → <b>karma sindirim</b>.</li><li>Artıklar yine ağızdan atılır.</li></ul>
+<h3>🪱 Toprak solucanı</h3>
+<p><b>İki açıklıklı</b>, tam bir sindirim kanalı vardır:</p>
+<div class="chain"><span>Ağız</span><em>→</em><span>Yutak</span><em>→</em><span>Yemek borusu</span><em>→</em><span class="hl">Kursak</span><em>→</em><span class="hl">Taşlık</span><em>→</em><span>Bağırsak</span><em>→</em><span>Anüs</span></div>
+<p>Kursak besini depolar, taşlık öğütür. Kuşlardaki yapılara benzer.</p>
+<div class="box akil"><b>🧠 Akılda kalsın</b><ul><li><b>Tek açıklıklı</b> (hidra): ağız hem giriş hem çıkış.</li><li><b>İki açıklıklı</b> (solucan, insan): besin ağızdan girer, artık anüsten çıkar. Besin tek yönde ilerler, kanalın her bölümü ayrı bir işte uzmanlaşır.</li></ul></div>
+</section>
+
+<section data-id="3-5" data-unit="3" data-title="Kuşlarda sindirim">
+<p>Kuşlarda <b>diş ve çene yoktur</b>, ağız sert bir <b>gaga</b> biçimindedir.</p>
+<h3>Kuşlarda sindirim kanalı</h3>
+<div class="chain"><span>Ağız (gaga)</span><em>→</em><span>Yutak</span><em>→</em><span>Yemek borusu</span><em>→</em><span class="hl">Kursak</span><em>→</em><span class="hl">Bezli mide</span><em>→</em><span class="hl">Kaslı mide (taşlık)</span><em>→</em><span>İnce bağırsak</span><em>→</em><span>Kalın bağırsak</span><em>→</em><span class="hl">Kloak</span></div>
+<div class="exp"><h4>🫙 Kursak</h4><div class="row">Yemek borusunun genişlemiş kısmıdır. Besinler burada bir süre <b>depolanır ve yumuşar</b>.</div></div>
+<div class="exp"><h4>🧪 Bezli mide</h4><div class="row">Sindirim enzimleri ve asit salgılanır. <b>Proteinlerin kimyasal sindirimi burada başlar</b>.</div></div>
+<div class="exp"><h4>💪 Kaslı mide (taşlık)</h4><div class="row">Kalın ve güçlü kaslı duvarı vardır. Kuşun yuttuğu küçük taş ve kum taneleri de yardım eder. Besinleri <b>öğüterek mekanik sindirim</b> yapar. <b>Dişlerin görevini üstlenir.</b></div></div>
+<div class="exp"><h4>🚪 Kloak</h4><div class="row"><b>Sindirim, boşaltım ve üreme</b> sistemlerinin ortak açıldığı odacıktır. Kloak açıklığı ile vücut dışına açılır.</div></div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b><ul><li>Taşlık <b>mekanik</b> sindirim yapar, kimyasal değil.</li><li>Sıra: <b>Önce bezli mide, sonra taşlık</b>.</li><li>Kursak sindirim yapmaz, depolar ve yumuşatır.</li></ul></div>
+<div class="box ornek"><b>💡 Bilgi</b>Diş ve ağır çene kemiklerinin olmaması kuşun vücudunu hafifletir, bu da uçmaya uyum sağlar.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Kuşlarda dişlerin görevini üstlenen yapı hangisidir, besini nasıl parçalar?</span>Kuşlarda dişlerin görevini kaslı mide (taşlık) üstlenir. Taşlığın güçlü kas yapısı ve içindeki küçük taşlar besinleri öğüterek fiziksel olarak parçalar ve mekanik sindirim sağlar. Kursak ise besinin geçici olarak depolanıp yumuşamasına yardım eder.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Kuşlarda sindirim, üreme ve boşaltım sistemlerinin dışarı açıldığı ortak açıklığın adı nedir?</span>Kloak.</div>
+</section>
+
+<section data-id="3-6" data-unit="3" data-title="Memelilerde diş ve mide yapısı">
+<h3>Diş çeşitleri</h3>
+<div class="tw"><table>
+<tr><th>Diş</th><th>Görevi</th></tr>
+<tr><td><b>Kesici</b> (önde)</td><td>Koparma, kesme</td></tr>
+<tr><td><b>Köpek</b> (sivri)</td><td>Yırtma, delme</td></tr>
+<tr><td><b>Azı</b> (arkada)</td><td>Öğütme, çiğneme</td></tr>
+</table></div>
+<h3>Beslenmeye göre diş yapısı</h3>
+<div class="tw wide"><table>
+<tr><th>Etçil</th><th>Otçul</th><th>Hepçil</th></tr>
+<tr><td>Avı yakalamaya, eti koparmaya ve parçalamaya uygun. <b>Sivri köpek dişleri</b>, keskin kesiciler ve parçalayıcı azılar belirgindir.</td><td>Bitkileri öğütmeye uygun <b>geniş yüzeyli azı dişleri</b> gelişmiştir. Bazılarında köpek dişi bulunmaz.</td><td>Hem bitkisel hem hayvansal besin yer. Üç diş çeşidi dengeli, <b>karma</b> diş yapısı vardır. Yetişkin insanda 32 diş bulunur.</td></tr>
+<tr><td>Kurt, kaplan, kedi</td><td>İnek, koyun, at, tavşan</td><td>İnsan, ayı</td></tr>
+</table></div>
+<h3>Mide yapısı</h3>
+<p><b>Tek bölmeli mide:</b> insan, kurt, kaplan, kedi, at, tavşan</p>
+<p><b>Dört bölmeli mide:</b> Geviş getiren otçullar (inek, koyun, keçi). Bölümler: <b>işkembe, börkenek, kırkbayır, şirden</b>.</p>
+<h3>Geviş getirenlerde besinin yolu</h3>
+<div class="chain"><span>Ağız</span><em>→</em><span>Yemek borusu</span><em>→</em><span class="hl">İşkembe</span><em>→</em><span class="hl">Börkenek</span><em>→</em><span class="hl2">Tekrar ağız (geviş)</span><em>→</em><span>Yemek borusu</span><em>→</em><span class="hl">Kırkbayır</span><em>→</em><span class="hl">Şirden</span><em>→</em><span>İnce bağırsak</span></div>
+<div class="tw"><table>
+<tr><th>Bölüm</th><th>Görevi</th></tr>
+<tr><td><b>İşkembe ve börkenek</b></td><td>Besin geçici olarak depolanır. Buradaki <b>mikroorganizmaların</b> (bakteri, protist) enzimleri <b>selülozu</b> parçalar.</td></tr>
+<tr><td><b>Geviş getirme</b></td><td>Besin börkenekten ağza geri gelir ve yeniden çiğnenir. Mekanik sindirim artar.</td></tr>
+<tr><td><b>Kırkbayır</b></td><td>Suyun ve bazı çözünmüş maddelerin bir kısmı emilir.</td></tr>
+<tr><td><b>Şirden</b></td><td>Hayvanın <b>kendi sindirim enzimleriyle</b> sindirim devam eder (gerçek mide).</td></tr>
+</table></div>
+<div class="box ornek"><b>💡 Neden mikroorganizma gerekli?</b>Selüloz bitki hücre çeperinin ana maddesidir. Memeliler selülozu sindiren enzimi <b>üretemez</b>. İşkembede yaşayan mikroorganizmalar bu enzimi üretir. Hayvan mikroorganizmaya besin ve uygun ortam sağlar, mikroorganizma selülozu sindirir. İkisi de kazançlıdır (karşılıklı yarar).</div>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı</b>İneğin "4 midesi" yoktur, tek midesi <b>4 bölmelidir</b>. Kendi enzimlerini salgılayan gerçek mide <b>şirdendir</b>.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Dört bölmeli midenin bitkisel beslenmeye sağladığı avantajı açıklayınız.</span>İşkembe ve börkenekte yaşayan mikroorganizmalar, ürettikleri enzimlerle hayvanın kendi enzimleriyle sindiremediği selülozun parçalanmasını sağlar. Ayrıca geviş getirme sırasında besinin yeniden çiğnenmesi mekanik sindirimi artırır. Böylece bitkisel besinlerden daha fazla yararlanılır.</div>
+</section>
+
+<section data-id="3-7" data-unit="3" data-title="Bağırsak uzunluğu ve genel karşılaştırma">
+<h3>Bağırsak uzunluğu</h3>
+<ul>
+<li>Otçul ve hepçillerin bağırsağı vücut büyüklüğüne oranla etçillerinkinden <b>uzundur</b>. Örneğin tavşanın bağırsağı, vücut boyutuna göre tilkininkinden uzundur.</li>
+<li><b>Neden?</b> Bitkisel besinler selüloz içerdiği için zor ve yavaş sindirilir. Hayvansal besinler protein ve yağca zengindir, kolay ve hızlı sindirilir.</li>
+<li><b>Uzun bağırsak</b>, sindirim için <b>daha fazla zaman</b> ve emilim için <b>daha geniş yüzey</b> sağlar.</li>
+<li>At ve tavşan gibi geviş getirmeyen otçullarda <b>kör bağırsak (çekum)</b> gelişmiştir. Buradaki mikroorganizmalar selüloz sindirimine yardım eder.</li>
+</ul>
+<h3>Genel karşılaştırma</h3>
+<div class="tw wide"><table>
+<tr><th>Özellik</th><th>Etçil</th><th>Otçul</th><th>Hepçil</th><th>Kuş</th></tr>
+<tr><td>Dişler</td><td>Sivri köpek dişi, keskin azılar</td><td>Geniş öğütücü azılar, köpek dişi küçük ya da yok</td><td>Üç çeşit dengeli</td><td>Diş yok, gaga</td></tr>
+<tr><td>Mide</td><td>Tek bölmeli</td><td>Geviş getirende 4 bölmeli (at ve tavşanda tek)</td><td>Tek bölmeli</td><td>Bezli mide + taşlık</td></tr>
+<tr><td>Bağırsak</td><td>Kısa</td><td>Uzun</td><td>Uzun (etçile göre)</td><td>Kısa</td></tr>
+<tr><td>Beslenme</td><td>Etçil</td><td>Otçul</td><td>Hepçil</td><td>Türüne göre etçil ya da otçul</td></tr>
+<tr><td>Örnek</td><td>Kurt, kaplan</td><td>İnek, koyun</td><td>İnsan</td><td>Tavuk, güvercin</td></tr>
+</table></div>
+<h3>Canlıyı tanıma ipuçları</h3>
+<ul class="qr">
+<li>🦷 Diş yok, kursak ve taşlık var → <b>kuş</b></li>
+<li>🐄 Dört bölmeli mide, uzun bağırsak → <b>geviş getiren otçul</b> (inek, koyun)</li>
+<li>🐺 Sivri köpek dişleri, kısa bağırsak, tek bölmeli mide → <b>etçil</b> (kurt, kaplan)</li>
+<li>🧍 Kesici, köpek ve azı dişlerinin hepsi var, tek bölmeli mide → <b>hepçil</b> (insan)</li>
+</ul>
+<div class="box tuzak"><b>⚠️ Sınav tuzağı: Selüloz</b>İnsanın selülozu sindirememesini "tek bölmeli mide" ile açıklama. Atın midesi de tek bölmelidir, ama kör bağırsağındaki (çekum) mikroorganizmalar selülozu sindirir. İnsan selülozu kendi enzimleriyle sindiremez ve sindirim sisteminde selülozu sindiren enzimleri üreten bakteriler yoktur.</div>
+<div class="box yaz"><b>✍️ Yazılıda böyle yaz</b><span class="q">Soru: Kaplan ile koyunun mide ve bağırsak farkını besinlerin sindirim zorluğuyla açıklayınız.</span>Kaplan etçildir. Hayvansal besinler protein ve yağca zengin olup kolay ve hızlı sindirildiği için kısa bağırsak ve tek bölmeli basit mide yeterlidir. Koyun otçuldur. Bitkisel besinler selüloz içerdiği için sindirimi zordur. Dört bölmeli midesindeki mikroorganizmalar selülozun sindirimine yardım eder. Uzun bağırsağı sindirim için daha fazla zaman ve emilim için daha geniş yüzey sağlar.</div>
+</section>
+
+<section data-id="3-8" data-unit="3" data-title="Hızlı tekrar: Sindirim">
+<ul class="qr">
+<li>🍽️ Sindirim: büyük besinleri hücre zarından geçebilecek küçük yapı taşlarına ayırma</li>
+<li>⚙️ Mekanik: enzim yok, yapı değişmez, yüzey alanı artar. 🧪 Kimyasal: enzim + su (hidroliz)</li>
+<li>🍞 Nişasta → glikoz · 🥩 Protein → amino asit · 🧈 Yağ → yağ asidi + gliserol</li>
+<li>🟡 Safra enzim içermez, yağı damlacıklara ayırır (mekanik).</li>
+<li>🔵 Hücre içi: besin kofulu + lizozom → sindirim kofulu → parçalanma → artık ekzositozla dışarı (amip, paramesyum, öglena, sünger, akyuvar, Kupffer hücresi)</li>
+<li>🟢 Hücre dışı: enzim dışarı salgılanır (mantar, çürükçül bakteri, salyangoz, denizkestanesi, omurgalıların sindirim kanalı). Avantajı: büyük besinler sindirilebilir.</li>
+<li>🧍 İnsanda iki çeşit de var: sindirim kanalında hücre dışı, akyuvar ve Kupffer hücrelerinde hücre içi.</li>
+<li>🧾 Sınıflandırma sorusu: ölçüt → gruplandır → isimlendir → "çünkü…"</li>
+<li>🟣 Karma: önce hücre dışı, sonra hücre içi (hidra, planarya)</li>
+<li>🧭 "Hücre dışı" vücudun dışı değil, hücrelerin dışı demektir.</li>
+<li>🧽 Sünger: kanal yok, hücre içi. 🪼 Hidra: tek açıklık, karma. 🪱 Solucan: iki açıklık, kursak + taşlık.</li>
+<li>🐦 Kuş: kursak (depo) → bezli mide (enzim, asit) → taşlık (öğütme, mekanik) → … → kloak (ortak açıklık)</li>
+<li>🦷 Kesici: kesme · Köpek: yırtma · Azı: öğütme</li>
+<li>🐄 Geviş getiren: işkembe → börkenek → ağız → kırkbayır → şirden. Selülozu mikroorganizmalar sindirir.</li>
+<li>📏 Otçul ve hepçilin bağırsağı etçile göre uzun (selüloz zor sindirilir), etçilin bağırsağı kısa.</li>
+<li>🚫 İnsan selülozu sindiremez, çünkü kendi enzimi yoktur ve bu enzimi üreten bakteriler de yoktur. Sebep "tek bölmeli mide" değildir.</li>
+</ul>
+</section>
+</template>
+
+<template id="sinavTpl">
+<div class="card teach"><h3>📝 Öğretmenin notu</h3>
+<ul style="margin:6px 0;padding-left:20px">
+<li><b>Enerji</b> ve <b>fotosentez</b> konularını iyi çalışın.</li>
+<li>Deneyleri, fotosentezi etkileyen maddelerle ilişkilendirin.</li>
+<li>Toplam <b>5 soru</b> var.</li>
+<li>Öğretmenin sınıfta sorduğu 2 sorudan: 1'i <b>ATP</b>, diğeri <b>fotosentezde kullanılan ve üretilen maddeler</b>.</li>
+<li><b>25 puanlık</b> bir soru var.</li>
+</ul></div>
+<div class="card"><h3 style="margin-top:0">🏫 Ortak yazılı nasıl olur?</h3>
+<ul style="padding-left:20px;margin:6px 0">
+<li>Sorular <b>açık uçludur</b>, toplam 5–6 soru, süre <b>40 dakika</b>.</li>
+<li>Soruların <b>2'sini okulun zümre öğretmenleri</b> yazar, gerisi MEB soru havuzundan gelir. Öğretmenin "sorduğum 2 soru" dediği sorular büyük ihtimalle bunlardır.</li>
+</ul></div>
+<div class="card"><h3 style="margin-top:0">📊 Konu soru dağılımı (1. dönem 1. ortak yazılı)</h3>
+<div class="tw"><table>
+<tr><th>Öğrenme çıktısı</th><th>S1</th><th>S2</th><th>S3</th></tr>
+<tr><td>BİY.10.1.1 Enerji ve ATP</td><td>2</td><td>3</td><td>2</td></tr>
+<tr><td>BİY.10.1.3 Fotosentez: maddeler ve deneyler</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>BİY.10.1.5 Sindirim</td><td>2</td><td>2</td><td>3</td></tr>
+</table></div>
+<p style="font-size:.88em;color:var(--muted);margin:6px 0 0">S1, S2, S3: senaryolar. Okul bu senaryolardan birini uygular. Bazı kaynaklarda bir Senaryo 4 de geçiyor, onda sindirimden soru yok. Fotosentez evreleri (10.1.2) ve kemosentez (10.1.4) bu yazılıda soru olarak yer almıyor.</p></div>
+<div class="card"><h3 style="margin-top:0">🎯 Çalışma sırası</h3>
+<ol style="padding-left:20px;margin:6px 0">
+<li>⭐ ATP: yapısı, bağları, fosforilasyon ve defosforilasyon, ATP döngüsü</li>
+<li>⭐ Fotosentezde kullanılan ve üretilen maddeler, deney–madde eşleştirmesi</li>
+<li>Enerji akışı, kış uykusu, sıcakkanlı ve soğukkanlı canlılar</li>
+<li>Sindirim: hücre içi ve dışı, kuş, geviş getirenler, diş ve bağırsak</li>
+</ol></div>
+<div class="card"><h3 style="margin-top:0">✍️ Açık uçlu soruda tam puan almak için</h3>
+<ul style="padding-left:20px;margin:6px 0">
+<li>Soruyu sonuna kadar oku. "Gerekçesiyle", "ilişkilendirerek" yazıyorsa <b>nedenini de yaz</b>.</li>
+<li>Cevaba sonuçla başla, sonra "<b>çünkü</b>…" ile açıkla.</li>
+<li>Kavramın adını mutlaka yaz: fosforilasyon, hidroliz, fotoliz, lizozom, taşlık…</li>
+<li>Uygun yerde <b>denklemi</b> yaz: ATP + H₂O → ADP + Pᵢ + Enerji, 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</li>
+<li>Deney sorusunda amaç, bağımsız, bağımlı ve sabit değişkenleri ayrı ayrı yaz.</li>
+<li>Puanı yüksek sorularda (20–25 puan) birden fazla gerekçe yaz.</li>
+</ul></div>
+</template>
+
+<script>
+(function(){
+var LS='biyo10y1_v1';
+var state={done:{},fs:0,theme:null};
+try{var s=JSON.parse(localStorage.getItem(LS));if(s){state.done=s.done||{};state.fs=s.fs||0;state.theme=s.theme||null;}}catch(e){}
+function save(){try{localStorage.setItem(LS,JSON.stringify(state));}catch(e){}}
+var root=document.documentElement;
+function applyPrefs(){
+  root.classList.remove('fs1','fs2'); if(state.fs) root.classList.add('fs'+state.fs);
+  if(state.theme) root.setAttribute('data-theme',state.theme); else root.removeAttribute('data-theme');
+  var dark=state.theme?state.theme==='dark':(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);
+  document.getElementById('thBtn').textContent=dark?'☀️':'🌙';
+}
+applyPrefs();
+document.getElementById('fsBtn').onclick=function(){state.fs=(state.fs+1)%3;save();applyPrefs();};
+document.getElementById('thBtn').onclick=function(){
+  var dark=state.theme?state.theme==='dark':(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);
+  state.theme=dark?'light':'dark';save();applyPrefs();
+};
+var U={
+ '1':{t:'Enerji ve ATP',c:'BİY.10.1.1',i:'⚡',d:'Enerjinin önemi, ATP’nin yapısı, fosforilasyon, ATP döngüsü, kış uykusu'},
+ '2':{t:'Fotosentez: Maddeler ve Deneyler',c:'BİY.10.1.3',i:'🌿',d:'Kullanılan ve üretilen maddeler, bilim insanları, deney–madde eşleştirmesi, faktörler'},
+ '3':{t:'Sindirim',c:'BİY.10.1.5',i:'🔬',d:'Hücre içi, hücre dışı ve karma sindirim, kuşlar, geviş getirenler, diş ve bağırsak'}
+};
+var tpl=document.getElementById('tpl').content;
+var L=[].slice.call(tpl.querySelectorAll('section')).map(function(s){return {id:s.getAttribute('data-id'),u:s.getAttribute('data-unit'),t:s.getAttribute('data-title'),star:s.getAttribute('data-star')==='1',el:s};});
+function byUnit(u){return L.filter(function(x){return x.u===u;});}
+function pct(arr){if(!arr.length)return 0;var n=arr.filter(function(x){return state.done[x.id];}).length;return Math.round(n*100/arr.length);}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+var app=document.getElementById('app'),ttl=document.getElementById('ttl'),back=document.getElementById('backBtn');
+var backTo='#home';
+back.onclick=function(){location.hash=backTo;};
+function setNav(k){[].forEach.call(document.querySelectorAll('#bnav a'),function(a){a.classList.toggle('on',a.getAttribute('data-k')===k);});}
+function chrome(title,b,inLesson){ttl.textContent=title;if(b){back.classList.remove('hide');backTo=b;}else back.classList.add('hide');document.body.classList.toggle('inlesson',!!inLesson);}
+
+function home(){
+  chrome('Biyoloji 1. Yazılı',null,false);setNav('home');
+  var all=pct(L),n=L.filter(function(x){return state.done[x.id];}).length;
+  var next=L.filter(function(x){return !state.done[x.id];})[0];
+  var h='<div class="hero"><h2>10. Sınıf Biyoloji<br>1. Dönem 1. Yazılı Hazırlık</h2><p>Konu anlatımı · '+L.length+' ders</p>'+
+  '<div class="pbar"><i style="width:'+all+'%"></i></div><p>'+n+' / '+L.length+' ders tamamlandı (%'+all+')</p>'+
+  (next?'<a class="cont" href="#l-'+next.id+'">'+(n?'Kaldığın yerden devam et →':'Çalışmaya başla →')+'</a>':'<a class="cont" href="#sinav">Tüm dersler bitti 🎉 Sınav bilgisine bak →</a>')+'</div>';
+  h+='<div class="card teach"><h3>⭐ Öğretmenin dikkat çektiği konular</h3>';
+  L.filter(function(x){return x.star;}).forEach(function(x){h+='<a href="#l-'+x.id+'">'+(state.done[x.id]?'✅ ':'▫️ ')+esc(x.t)+'</a>';});
+  h+='</div><div class="sec-t">Konular</div>';
+  ['1','2','3'].forEach(function(k){var u=U[k],p=pct(byUnit(k));
+    h+='<a class="card ucard u'+k+'" href="#u'+k+'"><div class="uicon">'+u.i+'</div><div style="flex:1;min-width:0"><small>'+u.c+'</small><h3>'+esc(u.t)+'</h3><small>'+byUnit(k).length+' ders · %'+p+'</small><div class="mini"><i style="width:'+p+'%"></i></div></div></a>';});
+  h+='<a class="card ucard" href="#sinav"><div class="uicon" style="background:var(--accentS)">📝</div><div><h3>Sınav bilgisi</h3><small>Öğretmenin notu, soru dağılımı, cevap yazma taktikleri</small></div></a>';
+  h+='<p class="foot">İlerlemen bu cihazda kaydedilir. Aa ile yazı boyutunu, 🌙 ile temayı değiştirebilirsin.</p>';
+  app.innerHTML=h;
+}
+function unit(k){
+  var u=U[k];if(!u){home();return;}
+  chrome(u.t,'#home',false);setNav('home');
+  var h='<div class="uhead u'+k+'"><div class="code">'+u.c+'</div><h2>'+u.i+' '+esc(u.t)+'</h2><p>'+esc(u.d)+'</p></div>';
+  byUnit(k).forEach(function(x,i){var ok=state.done[x.id];
+    h+='<a class="litem'+(ok?' ok':'')+'" href="#l-'+x.id+'"><span class="num">'+(ok?'✓':(i+1))+'</span><b>'+esc(x.t)+'</b>'+(x.star?'<span class="star">⭐ Öğretmen</span>':'')+'</a>';});
+  app.innerHTML=h;
+}
+var cur=null;
+function lesson(id){
+  var idx=-1;for(var i=0;i<L.length;i++){if(L[i].id===id){idx=i;break;}}
+  if(idx<0){home();return;}
+  var x=L[idx];cur=idx;var u=U[x.u];
+  chrome(u.t,'#u'+x.u,true);setNav('');
+  app.innerHTML='';
+  var head=document.createElement('div');head.className='lhead u'+x.u;
+  head.innerHTML='<span class="chip">'+u.c+' · Ders '+(byUnit(x.u).indexOf(x)+1)+'/'+byUnit(x.u).length+'</span>'+(x.star?' <span class="star">⭐ Öğretmenin vurguladığı</span>':'')+'<h2>'+esc(x.t)+'</h2>';
+  app.appendChild(head);
+  var body=document.createElement('div');body.className='lesson u'+x.u;
+  [].forEach.call(x.el.childNodes,function(n){body.appendChild(n.cloneNode(true));});
+  app.appendChild(body);
+  updBar();
+}
+function updBar(){
+  var x=L[cur];var d=document.getElementById('doneBtn');
+  if(state.done[x.id]){d.textContent='Okundu ✓';d.className='isdone';}else{d.textContent='Okudum ✓';d.className='done';}
+  document.getElementById('prevBtn').disabled=cur===0;
+  document.getElementById('nextBtn').textContent=cur===L.length-1?'Bitir 🏁':'Sonraki →';
+}
+document.getElementById('doneBtn').onclick=function(){var x=L[cur];if(state.done[x.id])delete state.done[x.id];else state.done[x.id]=1;save();updBar();};
+document.getElementById('prevBtn').onclick=function(){if(cur>0)location.hash='#l-'+L[cur-1].id;};
+document.getElementById('nextBtn').onclick=function(){var x=L[cur];if(!state.done[x.id]){state.done[x.id]=1;save();}
+  if(cur<L.length-1)location.hash='#l-'+L[cur+1].id;else location.hash='#home';};
+var S=[
+['ATP','Adenozin trifosfat. Hücrenin doğrudan kullandığı enerji taşıyıcı molekül.'],
+['ADP','Adenozin difosfat. 2 fosfatlı; ATP’den bir fosfat ayrılınca oluşur.'],
+['AMP','Adenozin monofosfat. 1 fosfatlı.'],
+['Adenozin','Adenin bazı + riboz şekeri.'],
+['Pᵢ','İnorganik fosfat.'],
+['Riboz','ATP’nin yapısındaki 5 karbonlu şeker.'],
+['Glikozit bağı','ATP’de adenin ile riboz arasındaki bağ.'],
+['Ester bağı','ATP’de riboz ile ilk fosfat arasındaki bağ.'],
+['Fosfat bağı','Fosfatlar arasındaki yüksek enerjili bağ. ATP’de 2 tane vardır.'],
+['Fosforilasyon','ADP’ye fosfat eklenerek ATP yapılması. Enerji harcanır (endergonik).'],
+['Defosforilasyon','ATP’den fosfat ayrılması. Enerji açığa çıkar (ekzergonik).'],
+['Hidroliz','Su kullanılarak büyük bir molekülün parçalanması.'],
+['Dehidrasyon sentezi','Su açığa çıkararak küçük molekülleri birleştirme.'],
+['Ekzergonik','Enerji açığa çıkaran tepkime (genelde yıkım).'],
+['Endergonik','Enerji gerektiren tepkime (genelde yapım).'],
+['Metabolizma','Hücredeki yapım ve yıkım tepkimelerinin tamamı.'],
+['Hücresel solunum','Besinlerin hücrede parçalanarak ATP üretilmesi.'],
+['Fermantasyon','Oksijensiz ortamda besinden ATP üretilmesi (mayalanma).'],
+['Ototrof','Kendi besinini inorganik maddelerden üreten canlı (üretici).'],
+['Heterotrof','Besinini dışarıdan hazır alan canlı (tüketici).'],
+['Kış uykusu (hibernasyon)','Bazı memelilerin kışı metabolizmalarını yavaşlatarak, depo besinleriyle geçirmesi.'],
+['Sıcakkanlı','Vücut sıcaklığı sabit olan canlı (memeli, kuş).'],
+['Soğukkanlı','Vücut sıcaklığı ortama göre değişen canlı (sürüngen, kurbağa, balık).'],
+['Fotosentez','Işık enerjisiyle CO₂ ve sudan glikoz üretilmesi.'],
+['Klorofil','Işığı soğuran yeşil pigment. Yapısında Mg vardır.'],
+['Pigment','Işığı soğuran renk maddesi.'],
+['Kloroplast','Fotosentezin gerçekleştiği organel.'],
+['Stoma','Yaprak yüzeyindeki gaz alışverişi gözeneği.'],
+['Fotoliz','Suyun ışıkla parçalanması; O₂ açığa çıkar.'],
+['Nişasta','Bitkilerde glikozun depolanma şekli. İyotla mavi-mor renk verir.'],
+['İyot testi','Nişasta varlığını gösteren test. Nişasta varsa mavi-mor, yoksa sarı-kahverengi.'],
+['KOH','Potasyum hidroksit. Ortamdaki CO₂’yi tutar.'],
+['NaHCO₃','Sodyum bikarbonat. Suya CO₂ verir.'],
+['Elodea','Su veba otu. Fotosentez deneylerinde kullanılan su bitkisi.'],
+['Alacalı yaprak','Yeşil (klorofilli) ve beyaz (klorofilsiz) bölgeleri olan yaprak.'],
+['Bağımsız değişken','Deneyde bilerek değiştirilen faktör.'],
+['Bağımlı değişken','Deneyde ölçülen, bağımsız değişkene göre değişen sonuç.'],
+['Kontrol değişkeni','Deneyde sabit tutulan faktör.'],
+['Kontrol grubu','Karşılaştırma için koşulların normal bırakıldığı grup.'],
+['Sınırlayıcı faktör','Fotosentez hızını belirleyen en yetersiz faktör (minimum kuralı).'],
+['Optimum sıcaklık','Enzimlerin en iyi çalıştığı uygun sıcaklık.'],
+['Sindirim','Büyük besinlerin hücreye girebilecek küçük yapı taşlarına ayrılması.'],
+['Mekanik sindirim','Enzimsiz, fiziksel parçalama (çiğneme, taşlık).'],
+['Kimyasal sindirim','Enzim ve su ile parçalama (hidroliz).'],
+['Enzim','Tepkimeleri hızlandıran protein yapılı molekül.'],
+['Lizozom','Sindirim enzimleri taşıyan organel.'],
+['Endositoz','Hücre zarının maddeyi sararak hücre içine alması.'],
+['Fagositoz','Katı besinin ya da bakterinin hücre içine alınması.'],
+['Ekzositoz','Hücre içindeki maddenin zar ile dışarı atılması.'],
+['Besin kofulu','Hücre içine alınan besini çevreleyen kese.'],
+['Sindirim kofulu','Besin kofulunun lizozomla birleşmesiyle oluşan kese.'],
+['Kupffer hücresi','Karaciğerde yaşlanmış alyuvarları parçalayan hücre. Hücre içi sindirim yapar.'],
+['Öglena','Fotosentez yapabilen tek hücreli canlı. Ders kitabında hücre içi sindirim örnekleri arasında geçer.'],
+['Hücre içi sindirim','Besinin hücre içinde lizozom enzimleriyle sindirilmesi.'],
+['Hücre dışı sindirim','Enzimlerin dışarı salgılanıp besinin hücre dışında sindirilmesi.'],
+['Karma sindirim','Önce hücre dışında başlayıp hücre içinde tamamlanan sindirim.'],
+['Gastrovasküler boşluk','Hidradaki tek açıklıklı sindirim boşluğu.'],
+['Ostium / Oskulum','Süngerde suyun girdiği küçük delikler / çıktığı büyük delik.'],
+['Tentakül','Dokunaç. Hidrada besin yakalayan uzantı.'],
+['Kursak','Besinin depolanıp yumuşadığı genişlemiş bölüm.'],
+['Bezli mide','Kuşlarda enzim ve asit salgılanan mide bölümü.'],
+['Taşlık (kaslı mide)','Kuşlarda besini öğüten kaslı mide. Mekanik sindirim yapar.'],
+['Kloak','Kuşlarda sindirim, boşaltım ve üreme sistemlerinin ortak açıklığı.'],
+['İşkembe','Geviş getirenlerde besinin depolandığı, mikroorganizmaların selülozu parçaladığı bölüm.'],
+['Börkenek','İşkembeden sonraki bölüm. Besin buradan ağza geri gelir.'],
+['Kırkbayır','Su ve çözünmüş maddelerin emildiği bölüm.'],
+['Şirden','Kendi enzimleriyle sindirimin devam ettiği gerçek mide.'],
+['Geviş getirme','Yutulan besinin ağza geri getirilip yeniden çiğnenmesi.'],
+['Selüloz','Bitki hücre çeperinin ana maddesi. Memeliler kendi enzimleriyle sindiremez.'],
+['Çekum','Kör bağırsak. At ve tavşanda selüloz sindirimine yardım eder.'],
+['Safra','Karaciğerde üretilir. Enzim içermez, yağları damlacıklara ayırır.']
+];
+function sozluk(){
+  chrome('Sözlük',null,false);setNav('sozluk');
+  app.innerHTML='<input class="search" id="q" placeholder="Kavram ara… (örn. fotoliz)" autocomplete="off"><div id="sl"></div>';
+  var q=document.getElementById('q'),sl=document.getElementById('sl');
+  function norm(t){return t.toLocaleLowerCase('tr');}
+  function draw(){var v=norm(q.value.trim());var h='';
+    S.forEach(function(e){if(!v||norm(e[0]).indexOf(v)>-1||norm(e[1]).indexOf(v)>-1)h+='<div class="term"><b>'+esc(e[0])+'</b><span>'+esc(e[1])+'</span></div>';});
+    sl.innerHTML=h||'<p style="color:var(--muted)">Sonuç bulunamadı.</p>';}
+  q.oninput=draw;draw();
+}
+function sinav(){
+  chrome('Sınav Bilgisi',null,false);setNav('sinav');
+  app.innerHTML='';app.appendChild(document.getElementById('sinavTpl').content.cloneNode(true));
+}
+function route(){
+  var h=(location.hash||'').replace(/^#/,'');
+  if(/^u[123]$/.test(h))unit(h.charAt(1));else if(h.indexOf('l-')===0)lesson(h.slice(2));else if(h==='sozluk')sozluk();else if(h==='sinav')sinav();else home();
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+route();
+})();
+</script>
+</body>
+</html>
